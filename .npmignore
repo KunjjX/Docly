@@ -1,0 +1,39 @@
+# Development files
+src/
+tests/
+test-project/
+docs/
+.env
+.env.example
+.github/
+.vscode/
+
+# Configuration
+.eslintrc.json
+.prettierrc
+nodemon.json
+jest.config.js
+babel.config.js
+tsconfig.json
+
+# Documentation source
+*.md
+!README.md
+!CHANGELOG.md
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+
+# Logs and testing
+*.log
+coverage/
+.nyc_output/
+
+# OS files
+.DS_Store
+Thumbs.db
