@@ -2,7 +2,7 @@
     "name": "docly-cli",
     "version": "2.0.0",
     "description": "Automatically generate complete project documentation with a single command",
-    "main": "dist/index.js",
+    "main": "src/commands/index.js",
     "type": "module",
     "bin": {
         "docly": "bin/index.js"
@@ -33,12 +33,12 @@
     ],
     "author": {
         "name": "Kunj Jarsaniya",
-        "email": "kunj@example.com"
+        "email": "kunjjarsaniya07@gmail.com"
     },
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/KunjJarsaniya/docly-cli.git"
+        "url": "git+https://github.com/kunjjarsaniya/Docly.git"
     },
     "engines": {
         "node": ">=16.0.0",
@@ -47,11 +47,11 @@
     "files": [
         "bin/",
         "src/",
-        "dist/",
         "README.md",
         "LICENSE"
     ],
     "dependencies": {
+        "@mermaid-js/mermaid-cli": "^11.12.0",
         "@google/genai": "^1.34.0",
         "axios": "^1.6.2",
         "chalk": "^5.3.0",

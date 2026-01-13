@@ -46,7 +46,7 @@ async function callGemini(prompt) {
     );
   }
 
-  // Use v1beta with gemini-1.5-flash (most stable and widely available)
+  // Use v1beta with gemini-2.5-flash (most stable and widely available)
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   try {

@@ -1,156 +1,190 @@
-# 📚 Docly - Automated Documentation Generator
+<div align="center">
+  
+# 📚 Docly
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen.svg)
+### **AI-Powered Documentation Generator**
 
-> **Transform your codebase into professional documentation with a single command.**
+[![npm version](https://img.shields.io/npm/v/docly-cli.svg?style=flat-square&color=CB3837)](https://www.npmjs.com/package/docly-cli)
+[![license](https://img.shields.io/npm/l/docly-cli.svg?style=flat-square&color=blue)](https://github.com/kunjjarsaniya/Docly/blob/main/LICENSE)
+[![node](https://img.shields.io/node/v/docly-cli.svg?style=flat-square&color=339933)](https://nodejs.org)
+[![downloads](https://img.shields.io/npm/dm/docly-cli.svg?style=flat-square&color=blue)](https://www.npmjs.com/package/docly-cli)
 
-Docly is a powerful developer productivity tool that automatically generates complete project documentation including README files, SRS documents, architecture diagrams, workflows, and test cases—all powered by AI.
+**Transform your codebase into professional documentation with a single command.**
 
-## 🎯 Why Docly?
+[Installation](#-installation) • [Commands](#-commands) • [Diagrams](#-diagram-generation) • [Configuration](#️-configuration) • [Contributing](#-contributing)
 
-Most developers focus on coding but skip proper documentation due to:
-- ⏰ Time constraints
-- 📝 Lack of documentation knowledge  
-- 🔁 Repetitive manual work
-- ⚡ Tight deadlines
+</div>
 
-**Docly solves this by:**
-- 🤖 Automatically analyzing your project
-- 🧠 Using AI-powered generation
-- 📄 Producing structured, professional documentation
-- ⚡ Running via a single CLI command
+---
 
 ## ✨ Features
 
-### MVP Features (v1.0)
-- ✅ **README.md Generation** - Professional project documentation
-- ✅ **SRS Generation** - Software Requirement Specification
-- ✅ **Architecture Diagrams** - Visual system design with Mermaid.js
-- ✅ **Workflow Documentation** - End-to-end user flows
-- ✅ **Test Cases** - Comprehensive testing documentation
-- ✅ **CLI-based** - Simple command execution
-- ✅ **MERN Stack Support** - Optimized for MERN projects
+<table>
+<tr>
+<td width="50%">
 
-### Power Features
-- 🚀 **API Documentation** - Automatic endpoint documentation
-- 🛠️ **Setup Guide** - Environment and configuration docs
-- 📦 **Deployment Guide** - Hosting and CI/CD instructions
-- 🔒 **Security Documentation** - Auth flows and best practices
-- 📋 **Requirements Matrix** - Feature-to-module mapping
+### 📄 10 Documentation Types
+- **README.md** — Project overview
+- **SRS.md** — Software Requirements
+- **ARCHITECTURE.md** — System architecture
+- **WORKFLOW.md** — User flows
+- **TEST_CASES.md** — Test documentation
+- **API_DOCS.md** — API documentation
+- **SETUP.md** — Installation guide
+- **DEPLOYMENT.md** — Deployment guide
+- **SECURITY.md** — Security documentation
+- **REQUIREMENTS.md** — Requirements matrix
 
-## 🚀 Quick Start
+</td>
+<td width="50%">
 
-### Installation
+### 📊 14 Diagram Types
+- **Architecture & Component** — System design
+- **ER Diagram** — Entity relationships with PK/FK
+- **DFD Level 1-3** — Data flow diagrams
+- **Sequence & Activity** — Process flows
+- **Class, State, Use Case** — UML diagrams
+- **Flowchart, Workflow, Deployment**
 
-**Option 1: NPX (No installation required)**
+</td>
+</tr>
+</table>
+
+### 🚀 Why Docly?
+
+| Problem | Docly Solution |
+|---------|---------------|
+| ⏰ No time for documentation | ⚡ Generate docs in seconds |
+| 📝 Don't know what to write | 🤖 AI analyzes your project |
+| 🔁 Repetitive manual work | 🎯 Single command automation |
+| 📊 Complex diagram creation | 🎨 Beautiful Mermaid.js PNG diagrams |
+
+---
+
+## 📦 Installation
+
 ```bash
+# Install globally (recommended)
+npm install -g docly-cli
+
+# Or install as dev dependency
+npm i docly-cli --save-dev
+
+# Or use directly with npx
 npx docly-cli readme
 ```
 
-**Option 2: Global Installation**
-```bash
-npm install -g docly-cli
-```
-
-**Option 3: Project Dependency**
-```bash
-npm install --save-dev docly-cli
-```
-
-### Basic Usage
-
-Navigate to your project root and run:
+After installation, navigate to your project and run:
 
 ```bash
-# Generate README
 docly readme
-
-# Generate SRS document
-docly srs
-
-# Generate architecture diagram
-docly architecture
-
-# Generate workflow documentation
-docly workflow
-
-# Generate test cases
-docly testcases
 ```
 
-## 📖 Command Reference
+---
 
-### Core Commands
+## 🛠 Commands
+
+### Documentation Generation (10 Types)
 
 | Command | Description | Output |
 |---------|-------------|--------|
 | `docly readme` | Generate README.md | `docs/README.md` |
 | `docly srs` | Generate SRS document | `docs/SRS.md` |
-| `docly architecture` | Generate architecture diagram | `docs/ARCHITECTURE.md` |
+| `docly architecture` | Generate architecture documentation | `docs/ARCHITECTURE.md` |
 | `docly workflow` | Generate workflow documentation | `docs/WORKFLOW.md` |
 | `docly testcases` | Generate test cases | `docs/TEST_CASES.md` |
-
-### Power Commands
-
-| Command | Description | Output |
-|---------|-------------|--------|
 | `docly api-docs` | Generate API documentation | `docs/API_DOCS.md` |
-| `docly setup` | Generate setup guide | `docs/SETUP.md` |
+| `docly setup` | Generate setup/installation guide | `docs/SETUP.md` |
 | `docly deploy` | Generate deployment guide | `docs/DEPLOYMENT.md` |
-| `docly requirements` | Generate requirements matrix | `docs/REQUIREMENTS.md` |
 | `docly security` | Generate security documentation | `docs/SECURITY.md` |
+| `docly requirements` | Generate requirements matrix | `docs/REQUIREMENTS.md` |
 
 ### Command Options
 
 ```bash
-# Use specific AI provider
+# Specify output directory
+docly readme -o ./documentation
+
+# Overwrite existing files
+docly srs --overwrite
+
+# Choose AI provider
 docly readme --ai gemini
-docly readme --ai openai
-
-# Export as PDF (future)
-docly srs --format pdf
-
-# Custom diagram type
-docly architecture --diagram mermaid
 ```
+
+---
+
+## 📊 Diagram Generation (14 Types)
+
+### Quick Commands
+
+```bash
+# Generate specific diagram type
+docly diagram -t <type>
+
+# Generate ALL diagrams at once
+docly diagram --all
+
+# Direct diagram commands
+docly diagram-er
+docly diagram-class
+docly diagram-sequence
+```
+
+### All Diagram Types
+
+| Type | Command | Description |
+|------|---------|-------------|
+| **Architecture** | `docly diagram-architecture` | System architecture overview |
+| **Component** | `docly diagram-component` | Component interaction diagram |
+| **Deployment** | `docly diagram-deployment` | Deployment environment diagram |
+| **ER Diagram** | `docly diagram-er` | Entity Relationship with PK/FK |
+| **Class** | `docly diagram-class` | Class/Object structure |
+| **Sequence** | `docly diagram-sequence` | Process sequence flow |
+| **State** | `docly diagram-state` | State machine diagram |
+| **Activity** | `docly diagram-activity` | Activity flow diagram |
+| **Use Case** | `docly diagram-usecase` | Use case diagram |
+| **Flowchart** | `docly diagram-flowchart` | General flowchart |
+| **Workflow** | `docly diagram-workflow` | Workflow process diagram |
+| **DFD Level 1** | `docly diagram-dfd-level-1` | Data Flow Diagram - Level 1 |
+| **DFD Level 2** | `docly diagram-dfd-level-2` | Data Flow Diagram - Level 2 |
+| **DFD Level 3** | `docly diagram-dfd-level-3` | Data Flow Diagram - Level 3 |
+
+> 💡 All diagrams are generated as **high-resolution PNG files** in `docs/diagrams/`
+
+---
 
 ## ⚙️ Configuration
 
-### Environment Variables
+### 1. Environment Variables
 
 Create a `.env` file in your project root:
 
 ```env
-# AI API Configuration (Choose one)
-OPENAI_API_KEY=your_openai_api_key_here
+# Required: Google Gemini API Key
 GEMINI_API_KEY=your_gemini_api_key_here
 
-# Optional: Custom API endpoint
-API_BASE_URL=http://localhost:3000
-
-# Optional: Output directory (default: ./docs)
+# Optional: Custom output directory (default: ./docs)
 OUTPUT_DIR=./docs
 ```
 
-### Configuration File
+> 💡 Get your free Gemini API key at [aistudio.google.com](https://aistudio.google.com/app/apikey)
 
-Create `docly.config.json` (optional):
+### 2. Configuration File (Optional)
+
+Create `docly.config.json`:
 
 ```json
 {
-  "outputDir": "./documentation",
+  "outputDir": "./docs",
   "aiProvider": "gemini",
-  "includeExamples": true,
-  "diagramFormat": "mermaid",
-  "projectType": "MERN"
+  "diagramFormat": "mermaid"
 }
 ```
 
-## 📂 Output Structure
+---
 
-After running Docly commands, your project will have:
+## 📁 Output Structure
 
 ```
 your-project/
@@ -162,61 +196,58 @@ your-project/
 │   ├── TEST_CASES.md
 │   ├── API_DOCS.md
 │   ├── SETUP.md
-│   └── DEPLOYMENT.md
-├── src/
+│   ├── DEPLOYMENT.md
+│   ├── SECURITY.md
+│   ├── REQUIREMENTS.md
+│   └── diagrams/
+│       ├── architecture.png
+│       ├── er.png
+│       ├── class.png
+│       ├── component.png
+│       ├── deployment.png
+│       ├── sequence.png
+│       ├── state.png
+│       ├── activity.png
+│       ├── usecase.png
+│       ├── flowchart.png
+│       ├── workflow.png
+│       ├── dfd-level-1.png
+│       ├── dfd-level-2.png
+│       └── dfd-level-3.png
 └── package.json
 ```
 
-## 🛠️ Tech Stack
+---
 
-- **CLI Framework**: Node.js + Commander.js
-- **AI Engine**: OpenAI / Google Gemini (pluggable)
-- **Diagrams**: Mermaid.js
-- **File Operations**: fs-extra
-- **Styling**: Chalk + Ora
-- **User Input**: Inquirer
+## 🔧 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **Node.js** | Runtime environment |
+| **Commander.js** | CLI framework |
+| **Google Gemini AI** | AI-powered generation |
+| **Mermaid.js** | Diagram rendering |
+| **Chalk & Ora** | Beautiful CLI output |
+
+---
 
 ## 📋 Requirements
 
-- Node.js >= 16.0.0
-- NPM >= 8.0.0
-- Internet connection (for AI generation)
-- API key for OpenAI or Google Gemini
+- **Node.js** ≥ 16.0.0
+- **npm** ≥ 8.0.0
+- Internet connection
+- Gemini API key
 
-## 🎓 Examples
-
-### Generate README for MERN Project
-
-```bash
-cd my-mern-app
-docly readme
-```
-
-Output: Professional README with project description, tech stack, installation steps, and folder structure.
-
-### Generate Complete Documentation Suite
-
-```bash
-docly readme
-docly srs
-docly architecture
-docly workflow
-docly testcases
-docly api-docs
-```
-
-Result: **6 professional documents** ready for client delivery or team collaboration.
+---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md).
-
-### Development Setup
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md).
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/docly-cli.git
-cd docly-cli
+git clone https://github.com/kunjjarsaniya/Docly.git
+cd Docly
 
 # Install dependencies
 npm install
@@ -224,75 +255,66 @@ npm install
 # Link for local testing
 npm link
 
-# Run in development mode
-npm run dev
-
 # Run tests
 npm test
 ```
 
+---
+
 ## 🐛 Troubleshooting
 
-### Common Issues
+<details>
+<summary><b>docly: command not found</b></summary>
 
-**Issue**: `docly: command not found`
 ```bash
-# Solution: Install globally
 npm install -g docly-cli
 ```
+</details>
 
-**Issue**: `API key not found`
+<details>
+<summary><b>API key not found</b></summary>
+
 ```bash
-# Solution: Set environment variable
+# Set environment variable
 export GEMINI_API_KEY=your_key_here
-# or create .env file
-```
 
-**Issue**: `Permission denied`
+# Or create .env file in your project root
+```
+</details>
+
+<details>
+<summary><b>Permission denied (Unix/Mac)</b></summary>
+
 ```bash
-# Solution (Unix/Mac)
 chmod +x ./node_modules/.bin/docly
 ```
-
-## 📊 Roadmap
-
-### Phase 1 - MVP ✅
-- [x] CLI tool
-- [x] Markdown documentation
-- [x] MERN stack support
-- [x] AI-powered generation
-
-### Phase 2 - Enhancements (Q1 2026)
-- [ ] PDF & DOCX export
-- [ ] Custom templates
-- [ ] Multi-language support
-- [ ] GitHub integration
-
-### Phase 3 - Scale (Q2 2026)
-- [ ] SaaS dashboard
-- [ ] Team collaboration
-- [ ] Versioned documentation
-- [ ] CI/CD integration
-
-## 📄 License
-
-MIT © [Your Name]
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ for developers who code more and document better
-- Powered by AI technologies from OpenAI and Google
-- Inspired by the documentation gap in software development
-
-## 📞 Support
-
-- 📧 Email: support@docly.dev
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/docly-cli/issues)
-- 💬 Discord: [Join our community](https://discord.gg/docly)
-- 📖 Docs: [Documentation](https://docs.docly.dev)
+</details>
 
 ---
 
-**Made with ❤️ by developers, for developers**
+## 📄 License
 
-⭐ Star us on [GitHub](https://github.com/yourusername/docly-cli) if Docly saves your time!
+This project is licensed under the [MIT License](LICENSE).
+
+```
+MIT License © 2026 Kunj Jarsaniya
+```
+
+---
+
+## 👨‍💻 Author
+
+**Kunj Jarsaniya**
+
+- GitHub: [@kunjjarsaniya](https://github.com/kunjjarsaniya)
+- Email: kunjjarsaniya07@gmail.com
+
+---
+
+<div align="center">
+
+**Made with ❤️ for developers who code more and document better**
+
+[⭐ Star on GitHub](https://github.com/kunjjarsaniya/Docly) • [🐛 Report Bug](https://github.com/kunjjarsaniya/Docly/issues) • [💡 Request Feature](https://github.com/kunjjarsaniya/Docly/issues)
+
+</div>

@@ -4,6 +4,8 @@ import { analyzeProject } from './analyzer.js';
 import { generateDoc } from './generator.js';
 import { writeDoc } from '../utils/fileUtils.js';
 
+import { renderMermaidToPng } from '../utils/mermaidUtils.js';
+
 /**
  * Runs the documentation generator for a specific type
  * @param {string} type - Document type (readme, srs, architecture, etc.)
@@ -18,13 +20,29 @@ export async function runGenerator(type, options = {}) {
     spinner.succeed(chalk.green('Project analyzed successfully'));
 
     // AI-powered generation
-    const content = await generateDoc(type, projectData, options.ai);
+    const content = await generateDoc(type, projectData, options);
 
     spinner.succeed(chalk.green(`${type} generated successfully`));
 
-    // Step 3: Write to file
+    // Handle Diagram PNG Export
+    if (type === 'diagram' && options.format === 'png') {
+      const outputFile = options.output.endsWith('.png') ? options.output : `${options.output}/${options.diagramType || 'diagram'}.png`;
+      spinner.start('Generating PNG image...');
+      const pngPath = await renderMermaidToPng(content, outputFile);
+
+      if (pngPath) {
+        spinner.succeed(chalk.green(`✅ Successfully generated ${pngPath}`));
+      }
+      return;
+    }
+
+    // Step 3: Write to file (for markdown or standard docs)
     spinner.start('Writing to file...');
-    const outputPath = await writeDoc(type, content, options.output);
+
+    // Should pass subtype for diagrams to ensure unique filenames
+    const writeType = (type === 'diagram' && options.diagramType) ? `diagram:${options.diagramType}` : type;
+
+    const outputPath = await writeDoc(writeType, content, options.output);
 
     spinner.succeed(chalk.green(`✅ Successfully generated ${outputPath}`));
   } catch (error) {

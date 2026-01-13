@@ -1,433 +1,435 @@
 /**
  * Build README prompt for AI generation
  */
+/**
+ * Build README prompt for AI generation
+ */
 export function buildReadmePrompt(projectData) {
-  return `Generate a comprehensive README.md file for the following project:
+   return `Generate a comprehensive and professional README.md file for the following project:
 
-**Project Information:**
+**Project Details:**
 - Name: ${projectData.name}
 - Description: ${projectData.description}
 - Version: ${projectData.version}
-
-**IMPORTANT CONTEXT:**
-This is "Docly" - an AI-powered CLI tool that automatically generates project documentation (README, SRS, Architecture, Workflows, Test Cases) using Google Gemini AI. It's NOT a web application - it's a command-line interface tool built with Node.js.
-
-**Available Commands:**
-- \`docly readme\` - Generate README.md
-- \`docly srs\` - Generate Software Requirements Specification
-- \`docly architecture\` - Generate architecture diagram
-- \`docly workflow\` - Generate workflow documentation
-- \`docly testcases\` - Generate test cases documentation
-
-**Technology Stack:**
-- Runtime: Node.js (CLI application, no frontend/database)
-- AI Provider: Google Gemini API (gemini-1.5-flash model)
-- HTTP Client: axios
-- CLI Framework: commander.js
-- Styling: chalk (terminal colors)
-- Spinners: ora (loading indicators)
-- File Operations: fs-extra
-- Environment: dotenv
-
-**Key Dependencies:**
-${projectData.dependencies
-  .slice(0, 15)
-  .map(dep => `- ${dep}`)
-  .join('\\n')}
+- Language: ${projectData.techStack.language}
+- Tech Stack: ${[
+         projectData.techStack.frontend,
+         projectData.techStack.backend,
+         projectData.techStack.database,
+         projectData.techStack.authentication,
+      ]
+         .filter(t => t && t !== 'None')
+         .join(', ')}
 
 **Project Structure:**
-${projectData.structure.map(dir => `- ${dir}/`).join('\\n')}
+${projectData.structure.map(dir => `- ${dir}/`).join('\n')}
+
+**Key Dependencies:**
+${projectData.dependencies.slice(0, 20).map(dep => `- ${dep}`).join('\n')}
+
+**Entry Points:**
+${projectData.entryPoints.map(e => `- ${e}`).join('\n')}
 
 ---
 
 **Instructions:**
-Generate a professional README.md specifically for this CLI documentation generator tool. Include:
+Generate a standard, high-quality README.md that includes:
+1. **Title & Badges** - Based on project metadata.
+2. **Introduction** - A clear explanation of what the project does.
+3. **Features** - List key features based on dependencies and project structure.
+4. **Tech Stack** - List the technologies used.
+5. **Prerequisites** - What's needed to run the project (e.g., Node.js version).
+6. **Installation** - Standard steps to install dependencies.
+7. **Usage** - How to run the project (look at scripts: ${projectData.scripts.join(', ')}).
+8. **Project Structure** - Brief explanation of the main directories.
+9. **Configuration** - Mention environment variables if applicable.
+10. **Contributing** - Standard contribution guidelines.
+11. **License** - Mention MIT or appropriate license.
 
-1. **Project Title & Badges** - "Docly CLI" with shields.io badges for version, license, node version
-2. **Description** - Clearly explain this is an AI-powered CLI tool for automatic documentation generation
-3. **Features** - List:
-   - Automated doc generation using Gemini AI
-   - Multiple documentation types (README, SRS, Architecture, Workflow, Test Cases)
-   - Simple CLI commands
-   - Configurable via .env
-   - Support for any Node.js project
-4. **Tech Stack** - Emphasize this is a CLI tool (Node.js backend only, no frontend/database)
-5. **Prerequisites** - Node.js 16+, Gemini API key
-6. **Installation** - Both global installation and local usage
-7. **Environment Variables** - GEMINI_API_KEY is required, AI_PROVIDER (gemini/openai) optional
-8. **Usage** - Show actual commands: \`docly readme\`, \`docly srs\`, etc. with flags like \`--overwrite\`
-9. **Getting API Key** - Link to https://aistudio.google.com/app/apikey
-10. **Project Structure** - Explain bin/, src/commands/, src/api/, src/templates/, etc.
-11. **How It Works** - Brief explanation of: analyze project → build prompt → call AI → save output
-12. **Contributing** - Link to CONTRIBUTING.md
-13. **License** - MIT License
-14. **Contact** - GitHub issues
-
-DO NOT include fictional features like web UI, database, authentication, or features that don't exist.
-Format in clean Markdown with code blocks for commands. Use emojis sparingly.`;
+Format in clean Markdown. Be specific to the project's actual stack and purpose.`;
 }
 
 /**
  * Build SRS prompt for AI generation
  */
 export function buildSRSPrompt(projectData) {
-  return `Generate a Software Requirements Specification (SRS) document for:
+   return `Generate a Software Requirements Specification (SRS) document for the project: "${projectData.name}".
 
-**Project:** ${projectData.name}
-**Description:** ${projectData.description}
-
-**CRITICAL CONTEXT:**
-This is "Docly CLI" - a command-line tool that uses Google Gemini AI to automatically generate project documentation. It's NOT a web app, NOT a documentation platform with user accounts. It's a simple CLI tool.
-
-**What Docly Actually Does:**
-1. User runs a command like \`docly readme\`
-2. Docly analyzes the project structure (files, package.json, etc.)
-3. Builds an AI prompt with project information
-4. Sends prompt to Google Gemini API
-5. Receives AI-generated documentation
-6. Saves to \`docs/\` folder
-
-**Actual Commands:**
-- \`docly readme\` - Generate README.md
-- \`docly srs\` - Generate SRS.md  
-- \`docly architecture\` - Generate ARCHITECTURE.md
-- \`docly workflow\` - Generate WORKFLOW.md
-- \`docly testcases\` - Generate TEST_CASES.md
-
-**Tech Stack:** Node.js CLI (no frontend, no database, no authentication)
+**Project Information:**
+- Description: ${projectData.description}
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Main Components: ${projectData.structure.join(', ')}
 
 ---
 
 **Instructions:**
-Create a focused SRS document for this specific CLI tool with:
+Create a detailed SRS document including:
+1. **Introduction** - Purpose and scope of the project.
+2. **Overall Description** - Product perspective, functions, user classes, and operating environment.
+3. **Functional Requirements** - List specific functionalities based on the project type and dependencies.
+4. **Non-Functional Requirements** - Performance, security, and usability requirements.
+5. **System Constraints** - Technical or environmental limitations.
 
-1. **Introduction**
-   - Purpose: Document Docly CLI tool requirements
-   - Scope: AI-powered documentation generator for developers
-   - Audience: Docly users and developers
-   - Product overview: CLI that generates docs using Gemini AI
-
-2. **Overall Description**
-   - Product perspective: Standalone CLI tool
-   - Product functions: Analyze project → Call AI → Generate docs
-   - User classes: Developers needing documentation
-   - Operating environment: Any OS with Node.js
-   - Constraints: Requires Gemini API key, internet connection
-   - Dependencies: Node.js 16+, Gemini API
-
-3. **Functional Requirements**
-   Focus on ACTUAL features:
-   - FR-1: Execute \`docly readme\` command
-   - FR-2: Execute \`docly srs\` command
-   - FR-3: Execute \`docly architecture\` command
-   - FR-4: Execute \`docly workflow\` command
-   - FR-5: Execute \`docly testcases\` command
-   - FR-6: Load GEMINI_API_KEY from .env
-   - FR-7: Analyze project structure
-   - FR-8: Call Gemini API with prompts
-   - FR-9: Save generated docs to docs/ folder
-   - FR-10: Handle --overwrite flag
-   - FR-11: Display progress spinners
-   - FR-12: Retry on API failures
-
-4. **Non-Functional Requirements**
-   - Performance: Generate docs in <30 seconds
-   - Security: API key stored in .env (gitignored)
-   - Usability: Simple CLI commands
-   - Reliability: Retry logic for API failures
-
-5. **System Constraints**
-   - Requires internet connection
-   - Requires valid Gemini API key
-   - Subject to Gemini API rate limits
-
-DO NOT invent features like JSDoc parsing, TypeScript support, template customization, watch mode, or web interfaces.
-Keep it realistic and specific to what Docly actually does.`;
+The document should be professional and tailored to the project's specific nature (e.g., if it's a CLI tool, focus on CLI requirements; if it's a web app, focus on UI/UX and API requirements).`;
 }
 
 /**
  * Build Workflow prompt for AI generation
  */
 export function buildWorkflowPrompt(projectData) {
-  return `Generate workflow documentation for:
+   return `Generate workflow documentation and Mermaid diagrams for the project: "${projectData.name}".
 
-**Project:** ${projectData.name}
-
-**CRITICAL CONTEXT:**
-This is "Docly CLI" - a command-line documentation generator. It's NOT a web application, so there are NO user login flows, NO authentication workflows, NO database operations.
-
-**What Docly Actually Does:**
-- User runs a CLI command (e.g., \`docly readme\`)
-- Docly analyzes project files
-- Sends data to Gemini AI
-- Saves generated documentation
-
-**Actual Commands:**
-\`\`\`bash
-docly readme        # Generate README.md
-docly srs           # Generate SRS.md
-docly architecture  # Generate ARCHITECTURE.md
-docly workflow      # Generate WORKFLOW.md
-docly testcases     # Generate TEST_CASES.md
-\`\`\`
-
-**Tech Stack:** Node.js CLI only (no frontend, no backend server, no database)
+**Project Information:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Structure: ${projectData.structure.join(', ')}
+- Entry Points: ${projectData.entryPoints.join(', ')}
 
 ---
 
 **Instructions:**
-Create workflow documentation covering:
+Document the logical flows within the system:
+1. **User Workflows** - Primary ways users interact with the system.
+2. **System Workflows** - Data flow between components.
+3. **Error Handling** - How the system handles common failure points.
+4. **Visual Diagrams** - Include Mermaid.js diagrams for key processes (e.g., sequence diagrams or flowcharts).
 
-1. **User Workflows**
-   - First-time setup workflow
-   - Command execution workflow
-   - Documentation generation workflow
-   - Regenerating documentation workflow
-   
-2. **System Workflows**
-   - Command parsing (commander.js)
-   - Project analysis (reading files)
-   - AI prompt building
-   - Gemini API call workflow
-   - File writing workflow
-
-3. **Internal Component Workflows**
-   - bin/index.js → src/commands/index.js flow
-   - src/commands → src/core/runGenerator.js flow
-   - runGenerator → analyzer → generateDoc flow
-   - AI client workflow (callGemini with retry logic)
-
-4. **Error Handling Workflows**
-   - Missing API key error
-   - Invalid API key error
-   - API timeout/503 errors
-   - File write permission errors
-
-5. **Diagrams**
-   Create Mermaid diagrams for:
-   - High-level command execution flow
-   - Detailed documentation generation sequence
-   - Error handling flowchart
-
-DO NOT document:
-- User registration/login (doesn't exist)
-- Web request-response cycles (it's a CLI)
-- Database workflows (no database)
-- Authentication flows (no auth)
-
-Keep workflows specific to CLI operations and AI-powered doc generation.`;
+Analyze the project structure and dependencies to infer the most likely workflows.`;
 }
 
 /**
- * Build Test Cases prompt for AI generation
+ * Build Test Cases documentation prompt
  */
 export function buildTestCasesPrompt(projectData) {
-  return `Generate test cases documentation for:
+   return `Generate a comprehensive test case document for the project: "${projectData.name}".
 
-**Project:** ${projectData.name}
-
-**CRITICAL CONTEXT:**
-This is "Docly CLI" - a command-line tool for generating documentation using AI.
-
-**Commands to Test:**
-1. \`docly readme\` - Generate README.md
-2. \`docly srs\` - Generate SRS.md
-3. \`docly architecture\` - Generate ARCHITECTURE.md
-4. \`docly workflow\` - Generate WORKFLOW.md
-5. \`docly testcases\` - Generate TEST_CASES.md
-
-**Key Components to Test:**
-- CLI argument parsing (commander.js)
-- Environment variable loading (.env)
-- Project analysis (src/core/analyzer.js)
-- AI prompt building (src/templates/index.js)
-- Gemini API client (src/api/client.js)
-- File writing (src/core/runGenerator.js)
-
-**Tech Stack:** Node.js CLI (no frontend, no database)
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Scripts: ${projectData.scripts.join(', ')}
+- Dependencies: ${projectData.dependencies.slice(0, 15).join(', ')}
 
 ---
 
 **Instructions:**
-Create test documentation with:
+Define a testing strategy and specific test cases:
+1. **Unit Tests** - For core logic and utilities.
+2. **Integration Tests** - For component interactions (e.g., API to Database).
+3. **End-to-End Tests** - For primary user journeys.
+4. **Test Table** - Include ID, Description, Prerequisites, Steps, and Expected Result for at least 5-10 key test cases.
 
-1. **Unit Tests**
-   Test individual functions:
-   - Project analyzer tests
-   - Prompt building tests
-   - Config loading tests
-   - File utilities tests
-   - Logger tests
-   - Validator tests
-
-2. **Integration Tests**
-   - Command execution tests
-   - API client with mock responses
-   - File system operations
-   - Environment variable loading
-
-3. **End-to-End Tests**
-   - Complete command execution: \`docly readme\`
-   - Output file verification
-   - Error handling (missing API key)
-   - Retry logic on API failures
-   - Overwrite flag behavior
-
-4. **Test Format**
-   For each test include:
-   - Test ID
-   - Description
-   - Prerequisites (e.g., valid API key, test project)
-   - Steps
-   - Expected Result
-   - Status field
-
-Focus on testing ACTUAL Docly features:
-- Command execution
-- AI API integration
-- File generation
-- Error handling
-- Retry logic
-
-DO NOT create tests for:
-- Web UI (doesn't exist)
-- Database operations (no database)
-- User authentication (no auth)
-- REST APIs (it's a CLI)
-
-Keep tests realistic and specific to CLI tool functionality.`;
-}
-
-/**
- * Build API Documentation prompt
- */
-export function buildAPIDocsPrompt(projectData) {
-  return `Generate API documentation for:
-
-**Project:** ${projectData.name}
-
-**CRITICAL CONTEXT:**
-This is "Docly CLI" - it does NOT expose a REST API. Users interact via command-line commands, not HTTP endpoints.
-
-However, Docly CONSUMES the Google Gemini AI API internally.
-
----
-
-**Instructions:**
-Create documentation explaining:
-
-1. **Internal API Usage**
-   - How Docly uses Google Gemini API
-   - API endpoint: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
-   - Authentication: API key in query parameter
-   - Request format
-   - Response format
-
-2. **CLI "API" (Commands)**
-   Document the command-line interface:
-   - \`docly readme [options]\`
-   - \`docly srs [options]\`
-   - \`docly architecture [options]\`
-   - \`docly workflow [options]\`
-   - \`docly testcases [options]\`
-   
-   Options:
-   - \`--overwrite\` - Overwrite existing documentation
-
-3. **Environment Variables**
-   - GEMINI_API_KEY (required)
-   - AI_PROVIDER (optional, default: gemini)
-
-DO NOT document REST API endpoints, as this tool doesn't provide any.
-Focus on documenting the CLI commands and internal Gemini API usage.`;
+Focus on the most critical parts of the project based on its structure and dependencies.`;
 }
 
 /**
  * Build Architecture Documentation prompt
  */
 export function buildArchitecturePrompt(projectData) {
-  return `Generate architecture documentation for:
+   return `Generate architecture documentation for the project: "${projectData.name}".
 
-**Project:** ${projectData.name}
-
-**CRITICAL CONTEXT:**
-This is "Docly CLI" - a command-line documentation generator, NOT a web application. There is NO frontend, NO backend server, NO database, NO authentication.
-
-**What Docly Actually Is:**
-- A Node.js CLI tool
-- Runs locally on user's machine
-- Makes API calls to Google Gemini
-- Reads/writes local files
-
-**Actual Architecture Components:**
-1. **CLI Entry Point** (\`bin/index.js\`)
-   - Uses commander.js for command parsing
-   - Entry point for all commands
-
-2. **Commands Layer** (\`src/commands/index.js\`)
-   - Command handlers (readme, srs, architecture, workflow, testcases)
-   - Delegates to runGenerator
-
-3. **Core Layer** (\`src/core/\`)
-   - \`runGenerator.js\` - Main orchestration
-   - \`analyzer.js\` - Project structure analysis
-   - \`generator.js\` - AI prompt building and doc generation
-
-4. **Templates Layer** (\`src/templates/index.js\`)
-   - Prompt builders for each doc type
-   - Context-specific instructions for AI
-
-5. **API Client Layer** (\`src/api/client.js\`)
-   - Gemini API integration
-   - HTTP client (axios)
-   - Retry logic
-   - Error handling
-
-6. **Utils Layer** (\`src/utils/\`)
-   - File operations (read/write)
-   - Environment loading (.env)
-   - Logging utilities
-
-**Tech Stack:** 
-- Runtime: Node.js
-- CLI: commander.js
-- HTTP: axios
-- AI: Google Gemini API
-- Files: fs-extra
-- UI: chalk + ora
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Structure: ${projectData.structure.join(', ')}
+- Entry Points: ${projectData.entryPoints.join(', ')}
+- Language: ${projectData.techStack.language}
 
 ---
 
 **Instructions:**
-Create architecture documentation with:
+Create a professional architecture document:
+1. **System Overview** - High-level description of the architecture (e.g., Monolithic, Microservices, Layered).
+2. **Component Breakdown** - Explain the purpose and responsibilities of each main directory/component.
+3. **Data Flow** - How data moves through the system.
+4. **Mermaid Diagram** - A high-level architecture diagram showing component interactions.
+5. **Tech Decisions** - Rationale for the chosen tech stack based on project goals.
 
-1. **High-Level Architecture**
-   Create a Mermaid diagram showing:
-   - User → CLI → Commands → runGenerator → Analyzer + Generator → AI API
-   - File System interactions
-   - .env configuration flow
-
-2. **Component Breakdown**
-   For each layer, explain:
-   - Purpose
-   - Key files
-   - Responsibilities
-   - Dependencies
-
-3. **Data Flow**
-   Explain the flow:
-   - Command execution → Project analysis → Prompt building → AI call → File writing
-
-4. **Technology Stack**
-   List actual technologies used (not generic frontend/backend/database)
-
-5. **Dependencies**
-   List key npm packages and their purposes
-
-DO NOT create:
-- Frontend/Backend/Database diagrams (doesn't apply to CLI)
-- Authentication flows (no auth)
-- REST API architecture (it's a CLI)
-
-Keep it specific to CLI tool architecture with local file operations and external API calls.`;
+Ensure the architecture description matches the actual file structure provided.`;
 }
+
+/**
+ * Build API Documentation prompt
+ */
+export function buildApiDocsPrompt(projectData) {
+   return `Generate comprehensive API documentation for the project: "${projectData.name}".
+
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Structure: ${projectData.structure.join(', ')}
+- Entry Points: ${projectData.entryPoints.join(', ')}
+
+---
+
+**Instructions:**
+Create professional API documentation including:
+1. **API Overview** - Base URL, authentication method, response format.
+2. **Endpoints** - List all endpoints with method, path, description, request/response examples.
+3. **Request/Response Examples** - JSON samples for each endpoint.
+4. **Error Codes** - Common error codes and their meanings.
+5. **Rate Limiting** - If applicable, mention rate limits.
+6. **Authentication** - How to authenticate requests.
+
+Analyze the project structure to infer API endpoints (look for routes/, controllers/, api/ folders).`;
+}
+
+/**
+ * Build Setup Guide prompt
+ */
+export function buildSetupPrompt(projectData) {
+   return `Generate a comprehensive setup guide for the project: "${projectData.name}".
+
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Dependencies: ${projectData.dependencies.slice(0, 20).join(', ')}
+- Scripts: ${projectData.scripts.join(', ')}
+
+---
+
+**Instructions:**
+Create a detailed setup guide including:
+1. **Prerequisites** - Required software, versions, and tools.
+2. **Installation Steps** - Step-by-step installation process.
+3. **Environment Configuration** - Environment variables and config files needed.
+4. **Database Setup** - If applicable, database installation and seeding.
+5. **Running the Project** - Commands to start development and production modes.
+6. **Common Issues** - Troubleshooting common setup problems.
+
+Make the guide beginner-friendly with clear command examples.`;
+}
+
+/**
+ * Build Deployment Guide prompt
+ */
+export function buildDeployPrompt(projectData) {
+   return `Generate a deployment guide for the project: "${projectData.name}".
+
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Scripts: ${projectData.scripts.join(', ')}
+- Language: ${projectData.techStack.language}
+
+---
+
+**Instructions:**
+Create a professional deployment guide including:
+1. **Deployment Options** - List hosting platforms suitable for this stack (Vercel, Heroku, AWS, etc.).
+2. **Build Process** - Steps to build for production.
+3. **Environment Variables** - Production environment configuration.
+4. **CI/CD Setup** - GitHub Actions or other CI/CD pipeline setup.
+5. **Docker** - If applicable, Dockerfile and docker-compose setup.
+6. **Post-Deployment** - Monitoring, logging, and health checks.
+
+Tailor the guide to the specific tech stack used.`;
+}
+
+/**
+ * Build Security Documentation prompt
+ */
+export function buildSecurityPrompt(projectData) {
+   return `Generate security documentation for the project: "${projectData.name}".
+
+**Project Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Dependencies: ${projectData.dependencies.slice(0, 15).join(', ')}
+
+---
+
+**Instructions:**
+Create comprehensive security documentation including:
+1. **Authentication** - How user authentication works (JWT, sessions, OAuth, etc.).
+2. **Authorization** - Role-based access control and permissions.
+3. **Data Protection** - Encryption, sensitive data handling, GDPR compliance.
+4. **API Security** - Rate limiting, CORS, input validation.
+5. **Security Best Practices** - Password policies, XSS/CSRF protection.
+6. **Vulnerability Management** - How to report security issues.
+
+Analyze dependencies to identify security-related packages and infer security practices.`;
+}
+
+/**
+ * Build Requirements Matrix prompt
+ */
+export function buildRequirementsPrompt(projectData) {
+   return `Generate a requirements matrix for the project: "${projectData.name}".
+
+**Project Context:**
+- Description: ${projectData.description}
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Structure: ${projectData.structure.join(', ')}
+
+---
+
+**Instructions:**
+Create a detailed requirements matrix including:
+1. **Functional Requirements** - Table with ID, Description, Priority, Status, Module.
+2. **Non-Functional Requirements** - Performance, security, usability requirements.
+3. **Technical Requirements** - System dependencies and constraints.
+4. **Feature-Module Mapping** - Which features map to which code modules.
+5. **Traceability Matrix** - Requirements to test cases mapping.
+
+Use tables for clear visualization. Prioritize requirements as High/Medium/Low.`;
+}
+
+// Shared styles for consistent, professional diagram aesthetics
+const SHARED_MERMAID_STYLES = `
+    %% Global Styling
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1px;
+    classDef container fill:#f9f9f9,stroke:#cccccc,stroke-width:1px,stroke-dasharray: 5 5,rx:5,ry:5;
+    classDef service fill:#e3f2fd,stroke:#2196f3,stroke-width:1px,rx:5,ry:5;
+    classDef storage fill:#f1f8e9,stroke:#4caf50,stroke-width:1px;
+    classDef external fill:#ffebee,stroke:#f44336,stroke-width:1px,rx:5,ry:5;
+`;
+
+/**
+ * Build Diagram generation prompt
+ * @param {Object} projectData
+ * @param {string} diagramType
+ */
+export function buildDiagramPrompt(projectData, diagramType = 'architecture') {
+   const isFlowchartLike = ['architecture', 'workflow', 'dfd', 'component', 'deployment', 'dfd-level-1', 'dfd-level-2', 'dfd-level-3', 'usecase'].includes(diagramType);
+   const isStateLike = ['activity', 'state'].includes(diagramType);
+   const isSequence = diagramType === 'sequence';
+   const isClass = diagramType === 'class';
+   const isER = ['er', 'erd'].includes(diagramType);
+
+   let rules = '';
+   let stylingInstructions = '';
+   let initDirective = '';
+
+   // Define specific rules per type
+   if (isFlowchartLike) {
+      if (diagramType === 'component') {
+         rules = `
+1. Syntax: \`flowchart TD\`.
+2. Nodes:
+   - Use \`subgraph "Name"\` for grouping (Do NOT use \`package\`).
+   - Use \`[Component]\` syntax for nodes (e.g. \`id["Component Name"]\`).
+   - IDs must be alphanumeric.
+3. Edges: \`CompA -->|Label| CompB\`.
+4. Style: Create a clean, modular layout.
+         `;
+      } else if (diagramType === 'deployment') {
+         rules = `
+1. Syntax: \`flowchart TD\`.
+2. Nodes:
+   - Use \`subgraph "Node Name"\` for environments.
+   - **CRITICAL**: Do NOT append \`:::style\` to subgraph definitions. Use \`class SubgraphID container\` at the end if needed.
+   - IDs must be STRICTLY alphanumeric (e.g. \`Server1\`).
+   - Edges: \`Server1 -- "Protocol" --> Server2\`.
+3. Layout: Ensure clear separation of environments.
+         `;
+      } else if (diagramType === 'usecase') {
+         rules = `
+1. Syntax: \`flowchart TD\`.
+2. **STRICTLY** DO NOT use \`usecaseDiagram\`. Use \`flowchart TD\`.
+3. Actors: Use \`id([Actor Name])\` shape.
+4. Cases: Use \`id((Use Case Name))\` shape.
+5. Relationships: \`Actor --> Case\`.
+6. Grouping: Use \`subgraph SystemID ["System Name"]\` (Valid Alphanumeric ID).
+7. Comments: Use \`%%\`. **CRITICAL**: Place comments on their OWN LINE. Do NOT use inline comments.
+8. LABELS: **ALWAYS** quote labels inside shapes. Example: \`id["Label text"]\`, \`id(["Actor"])\`, \`id(("Case"))\`.
+         `;
+      } else {
+         // Default Flowchart/Architecture/DFD rules
+         rules = `
+1. Syntax: \`flowchart TD\`.
+2. Nodes: Simple alphanumeric IDs quoted if needed (e.g. \`id["Label"]\`).
+3. Edges: \`A -->|Label| B\`.
+4. Grouping: Use \`subgraph GroupID ["Title"]\` (Valid Alphanumeric ID required).
+         `;
+      }
+
+      stylingInstructions = `
+4. MANDATORY STYLING:
+   - Copy this EXACTLY inside the flowchart:
+   ${SHARED_MERMAID_STYLES}
+   - Apply classes using \`:::\` ONLY for nodes (e.g. \`node:::service\`).
+   - FOR SUBGRAPHS: Do NOT use \`:::\` on the subgraph line. Use \`class SubgraphID container\` at the end.
+   - Classes to use:
+     - \`service\` for Logic/Compute/Actors/Components.
+     - \`storage\` for Database/Files/Artifacts.
+     - \`external\` for Third-party/End Users.
+     - \`container\` for Subgraphs/Packages.
+      `;
+
+   } else if (isStateLike) {
+      rules = `
+1. Syntax: \`stateDiagram-v2\`.
+2. States: Use readable descriptions or IDs.
+3. Transitions: \`State1 --> State2 : Description\`.
+      `;
+      stylingInstructions = `
+4. STYLING:
+   - You MAY use \`classDef\` if supported, but prioritize valid syntax.
+   - Example: \`classDef state_style fill:#f9f,stroke:#333;\`
+      `;
+
+   } else if (isSequence) {
+      rules = `
+1. Syntax: \`sequenceDiagram\`.
+2. Participants: \`participant A as "Actor"\`.
+3. Messages: \`A->>B: Message\`.
+      `;
+      stylingInstructions = `
+4. STYLING: Do NOT use \`classDef\`. Use standard sequence diagram syntax only.
+      `;
+
+   } else if (isClass) {
+      rules = `
+1. Syntax: \`classDiagram\`.
+2. Classes: \`class ClassName { +Method() }\`.
+3. Relations: \`ClassA --|> ClassB\`.
+      `;
+      stylingInstructions = `
+4. STYLING: Do NOT use \`classDef\` or \`:::\` syntax.
+      `;
+
+   } else if (isER) {
+      // Professional Blue Theme init directive
+      // primaryColor: Header Background (#2b547e - Deep Blue)
+      // primaryTextColor: Header Text (#ffffff - White)
+      // attributeBackgroundOdd: Alternating row color (#f9f9f9)
+      // attributeBackgroundEven: Alternating row color (#ffffff)
+      // textColor: Text color (#333333)
+      initDirective = `%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#000000', 'textColor': '#000000', 'attributeBackgroundOdd': '#f0f0f0', 'attributeBackgroundEven': '#e0e0e0' }}}%%`;
+
+      rules = `
+1. Syntax: \`erDiagram\`.
+2. Entities: \`ENTITY { type name }\` (e.g., \`USER { int id string name }\`).
+3. Relations: \`ENTITY ||--o{ OTHER : label\`.
+4. **CONTENT**: You MUST list significant attributes with types.
+   - **CRITICAL**: Mark Primary Keys with \`PK\` and Foreign Keys with \`FK\`.
+   - Example: \`int id PK\`, \`string email\`, \`int user_id FK\`.
+5. Layout: Ensure related entities are grouped.
+      `;
+      stylingInstructions = `
+4. STYLING:
+   - Do NOT use \`classDef\`.
+   - The theme is handled by the init directive (Already Included).
+   - Ensure clean Entity definitions.
+      `;
+
+   } else {
+      rules = `1. Syntax: \`flowchart TD\`.`;
+   }
+
+   return `Generate a Mermaid.js diagram code for the project: "${projectData.name}".
+
+**Diagram Type:** ${diagramType.toUpperCase()}
+**Context:**
+- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Structure: ${projectData.structure.join(', ')}
+
+**CRITICAL OUTPUT RULES:**
+1. **Raw Code Only**: Return ONLY the Mermaid code. No markdown blocks, no \`\`\` wrappers.
+2. **Valid Syntax**: Ensure strictly valid syntax for **${diagramType}**.
+${rules}
+${stylingInstructions}
+3. **Content**:
+   - Use the provided project structure and tech stack to infer nodes/components.
+   - Keep labels concise.
+4. **Init Directive**:
+   - If provided here, include it at the VERY TOP of the file:
+   ${initDirective}
+`;
+}
+
+export const DIAGRAM_STYLES = SHARED_MERMAID_STYLES;
+

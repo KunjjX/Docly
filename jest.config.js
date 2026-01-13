@@ -1,5 +1,4 @@
 export default {
-    preset: 'node',
     testEnvironment: 'node',
     transform: {},
     moduleNameMapper: {

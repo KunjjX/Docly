@@ -1,55 +1,13 @@
-# Contributing to Docly
+# Contributing to Docly 🤝
 
-Thank you for your interest in contributing to Docly! 🎉
+Thank you for your interest in contributing to **docly-cli**! We love your input and welcome contributions of all kinds.
 
-## Code of Conduct
-
-By participating in this project, you agree to maintain a respectful and inclusive environment for everyone.
-
-## How Can I Contribute?
-
-### Reporting Bugs
-
-Before creating bug reports, please check existing issues. When creating a bug report, include:
-
-- **Clear title** and description
-- **Steps to reproduce** the issue
-- **Expected behavior**
-- **Actual behavior**
-- **Environment details** (OS, Node version, etc.)
-- **Screenshots** if applicable
-
-### Suggesting Features
-
-Feature suggestions are welcome! Please:
-
-- **Check existing issues** for duplicates
-- **Describe the feature** in detail
-- **Explain the use case** and benefits
-- **Provide examples** if possible
-
-### Pull Requests
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Follow code style**: Run `npm run lint` and `npm run format`
-4. **Write tests**: Maintain 80%+ coverage
-5. **Update documentation**: Update README if needed
-6. **Commit with clear messages**: Use conventional commits
-   ```
-   feat: add new command for API docs
-   fix: handle missing package.json gracefully
-   docs: update installation instructions
-   ```
-7. **Push to your fork**: `git push origin feature/amazing-feature`
-8. **Open a Pull Request**
-
-## Development Setup
+## 📋 Quick Start
 
 ```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/docly-cli.git
-cd docly-cli
+# Fork and clone
+git clone https://github.com/kunjjarsaniya/Docly.git
+cd Docly
 
 # Install dependencies
 npm install
@@ -57,69 +15,80 @@ npm install
 # Link for local testing
 npm link
 
-# Run tests
-npm test
-
-# Run in watch mode
-npm run dev
+# Test your changes
+docly --help
 ```
 
-## Coding Guidelines
+## 🐛 Reporting Bugs
 
-### Style Guide
+Before creating a bug report, please check existing issues. When reporting, include:
 
-- Use **2 spaces** for indentation
-- Use **single quotes** for strings
-- Add **semicolons**
-- Follow **ESLint** rules: `npm run lint`
-- Format code: `npm run format`
+- Clear, descriptive title
+- Steps to reproduce
+- Expected vs actual behavior
+- Node.js version (`node -v`)
+- Operating system
+- Error messages/screenshots
 
-### Commit Messages
+## 💡 Suggesting Features
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+We welcome feature ideas! Please:
 
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation changes
-- `style:` Code formatting
-- `refactor:` Code restructuring
-- `test:` Adding tests
-- `chore:` Maintenance
+1. Check existing issues/discussions first
+2. Describe the feature clearly
+3. Explain the use case
+4. Provide examples if possible
 
-### Testing
+## 🔧 Pull Request Process
 
-- Write tests for new features
-- Ensure all tests pass: `npm test`
-- Maintain coverage: `npm test -- --coverage`
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/your-feature`
+3. **Code** following our style guide
+4. **Test** your changes: `npm test`
+5. **Commit** using [Conventional Commits](https://www.conventionalcommits.org/):
+   ```
+   feat: add new diagram type
+   fix: handle missing API key gracefully  
+   docs: update command examples
+   ```
+6. **Push** and open a Pull Request
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-docly-cli/
-├── bin/          # CLI entry point
-├── src/          # Source code
-│   ├── commands/ # Command implementations
-│   ├── core/     # Core logic
-│   ├── api/      # API client
-│   └── utils/    # Utilities
-└── tests/        # Test files
+Docly/
+├── bin/              # CLI entry point
+├── src/
+│   ├── commands/     # Command implementations
+│   ├── core/         # Core logic (analyzer, generator)
+│   ├── templates/    # AI prompt templates
+│   ├── api/          # Gemini API client
+│   └── utils/        # Utilities
+├── tests/            # Test suite
+└── docs/             # Generated documentation
 ```
 
-## Adding New Commands
+## 🎨 Code Style
 
-See [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for detailed instructions.
+- **2 spaces** for indentation
+- **Single quotes** for strings
+- **Semicolons** required
+- Run `npm run lint` before committing
+- Run `npm run format` to auto-format
 
-## Need Help?
+## 🧪 Testing
 
-- 📖 Check [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)
-- 💬 Ask in [GitHub Discussions](https://github.com/yourusername/docly-cli/discussions)
-- 🐛 Report issues on [GitHub Issues](https://github.com/yourusername/docly-cli/issues)
+```bash
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # Coverage report
+```
 
-## Recognition
+## 📞 Need Help?
 
-Contributors will be recognized in:
-- README.md
-- Release notes
-- Contributors list
+- 🐛 [Report Issues](https://github.com/kunjjarsaniya/Docly/issues)
+- 💬 [Discussions](https://github.com/kunjjarsaniya/Docly/discussions)
 
-Thank you for contributing! 🚀
+---
+
+**Thank you for helping make Docly better!** 🚀

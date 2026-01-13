@@ -19,8 +19,9 @@ describe('Project Analyzer', () => {
     expect(result.techStack.database).toBe('MongoDB');
   });
 
-  test('should throw error for missing package.json', async () => {
-    await expect(analyzeProject('/nonexistent/path')).rejects.toThrow('package.json not found');
+  test('should not throw error for missing package.json', async () => {
+    const result = await analyzeProject('/nonexistent/path');
+    expect(result.name).toBe('nonexistent'); // It uses the basename of the path
   });
 
   test('should extract dependencies correctly', async () => {

@@ -55,6 +55,12 @@ function getFileName(type) {
     security: 'SECURITY.md',
   };
 
+  // Handle dynamic diagram types (e.g., diagram:erd -> ERD.md)
+  if (type.startsWith('diagram:')) {
+    const subtype = type.split(':')[1];
+    return `${subtype.toUpperCase()}.md`;
+  }
+
   return fileMap[type] || `${type.toUpperCase()}.md`;
 }
 
