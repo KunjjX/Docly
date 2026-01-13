@@ -1,6 +1,6 @@
 {
     "name": "docly-cli",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Automatically generate complete project documentation with a single command",
     "main": "src/commands/index.js",
     "type": "module",
