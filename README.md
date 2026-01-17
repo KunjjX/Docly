@@ -308,6 +308,7 @@ MIT License © 2026 Kunj Jarsaniya
 
 - GitHub: [@kunjjarsaniya](https://github.com/kunjjarsaniya)
 - Email: kunjjarsaniya07@gmail.com
+- package-link: [npm]https://www.npmjs.com/package/docly-cli)
 
 ---
 
