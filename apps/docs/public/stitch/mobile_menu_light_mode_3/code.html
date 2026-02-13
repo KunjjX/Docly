@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Diagrams Showcase Light Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0c6de4",
+                        "primary-hover": "#0a5bc4",
+                        "background-light": "#ffffff",
+                        "surface-gray": "#f9fafb",
+                        "border-gray": "#e5e7eb",
+                        "text-main": "#111827",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    boxShadow: {
+                        "card": "0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)",
+                        "card-hover": "0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-feature-settings: "cv11", "ss01";
+            -webkit-font-smoothing: antialiased;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-sans text-text-main min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border-gray">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold text-lg">D</div>
+<span class="text-lg font-bold tracking-tight">Docly</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+<a class="hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-primary" href="#">Showcase</a>
+<a class="hover:text-primary transition-colors" href="#">Docs</a>
+<a class="hover:text-primary transition-colors" href="#">Pricing</a>
+</nav>
+<button class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:py-16">
+<div class="max-w-3xl mb-16">
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-text-main mb-4">
+                Architecture as Code
+            </h1>
+<p class="text-xl text-text-muted leading-relaxed">
+                Generate beautiful, maintainable diagrams directly from your CLI. Docly transforms your codebase into visual documentation automatically.
+            </p>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="sticky top-24">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Diagram Types</h3>
+<nav class="flex flex-col space-y-1">
+<a class="flex items-center justify-between px-3 py-2 rounded-md bg-surface-gray text-primary font-medium border-l-2 border-primary" href="#">
+<span>Flowcharts</span>
+<span class="text-xs bg-white text-primary px-1.5 py-0.5 rounded border border-primary/20">12</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-text-muted hover:bg-surface-gray hover:text-text-main transition-colors group" href="#">
+<span>Sequence Diagrams</span>
+<span class="text-xs text-gray-400 group-hover:text-gray-500">8</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-text-muted hover:bg-surface-gray hover:text-text-main transition-colors group" href="#">
+<span>Entity Relationship</span>
+<span class="text-xs text-gray-400 group-hover:text-gray-500">5</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-text-muted hover:bg-surface-gray hover:text-text-main transition-colors group" href="#">
+<span>Cloud Architecture</span>
+<span class="text-xs text-gray-400 group-hover:text-gray-500">14</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-text-muted hover:bg-surface-gray hover:text-text-main transition-colors group" href="#">
+<span>Git Graphs</span>
+<span class="text-xs text-gray-400 group-hover:text-gray-500">3</span>
+</a>
+</nav>
+<div class="mt-8 pt-8 border-t border-border-gray">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Format</h3>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm text-text-muted group-hover:text-text-main">Mermaid.js</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm text-text-muted group-hover:text-text-main">PlantUML</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm text-text-muted group-hover:text-text-main">GraphViz</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="group bg-white rounded-xl border border-border-gray shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col">
+<div class="aspect-[4/3] bg-surface-gray p-8 flex items-center justify-center relative border-b border-border-gray/50 overflow-hidden">
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 w-full h-full bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col items-center justify-center space-y-4">
+<div class="w-24 h-12 border-2 border-text-main rounded-md flex items-center justify-center text-xs font-mono">Start</div>
+<span class="material-symbols-outlined text-gray-400 text-sm">arrow_downward</span>
+<div class="w-32 h-24 border-2 border-dashed border-primary bg-primary/5 rounded-md flex items-center justify-center text-xs font-mono text-primary font-bold">Process Data</div>
+<span class="material-symbols-outlined text-gray-400 text-sm">arrow_downward</span>
+<div class="w-24 h-12 border-2 border-text-main rounded-md flex items-center justify-center text-xs font-mono">End</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-lg font-bold text-text-main mb-2">Auth User Flow</h3>
+<p class="text-sm text-text-muted mb-4">Standard OAuth2 authentication process visualization.</p>
+<div class="bg-gray-900 rounded-md p-3 font-mono text-xs flex items-center gap-2 text-gray-300 group-hover:text-white transition-colors">
+<span class="text-primary font-bold">$</span>
+<span class="truncate">docly generate --type flow auth.ts</span>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl border border-border-gray shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col">
+<div class="aspect-[4/3] bg-surface-gray p-8 flex items-center justify-center relative border-b border-border-gray/50 overflow-hidden">
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 w-full h-full bg-white rounded-lg shadow-sm border border-gray-200 p-6 grid grid-cols-2 gap-4 items-center">
+<div class="col-span-1 border border-gray-300 rounded p-2 text-[10px] text-center bg-gray-50">Client</div>
+<div class="col-span-1 border border-gray-300 rounded p-2 text-[10px] text-center bg-gray-50">Server</div>
+<div class="col-span-2 h-px bg-gray-200 relative my-2">
+<div class="absolute top-1/2 left-1/4 w-2 h-2 bg-primary rounded-full transform -translate-y-1/2"></div>
+</div>
+<div class="col-span-1 border border-primary text-primary rounded p-2 text-[10px] text-center bg-blue-50">Request</div>
+<div class="col-span-1 border border-gray-300 rounded p-2 text-[10px] text-center bg-gray-50">DB</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-lg font-bold text-text-main mb-2">Microservice Net</h3>
+<p class="text-sm text-text-muted mb-4">Service-to-service communication map.</p>
+<div class="bg-gray-900 rounded-md p-3 font-mono text-xs flex items-center gap-2 text-gray-300 group-hover:text-white transition-colors">
+<span class="text-primary font-bold">$</span>
+<span class="truncate">docly generate --net services/*</span>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl border border-border-gray shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col">
+<div class="aspect-[4/3] bg-surface-gray p-8 flex items-center justify-center relative border-b border-border-gray/50 overflow-hidden">
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 w-full h-full bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center">
+<div class="flex gap-4 mb-4">
+<div class="w-10 h-10 rounded-full border border-gray-300 bg-gray-50"></div>
+<div class="w-10 h-10 rounded-full border border-gray-300 bg-gray-50"></div>
+<div class="w-10 h-10 rounded-full border border-gray-300 bg-gray-50"></div>
+</div>
+<div class="w-full h-px bg-gray-300 mb-4 relative">
+<div class="absolute left-1/2 -top-2 w-0 h-0 border-l-[6px] border-l-transparent border-t-[8px] border-t-gray-300 border-r-[6px] border-r-transparent transform -translate-x-1/2"></div>
+</div>
+<div class="w-32 h-10 border border-primary bg-primary/5 rounded flex items-center justify-center text-[10px] text-primary font-mono">Load Balancer</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-lg font-bold text-text-main mb-2">AWS Infra Map</h3>
+<p class="text-sm text-text-muted mb-4">Terraform state visualization for AWS.</p>
+<div class="bg-gray-900 rounded-md p-3 font-mono text-xs flex items-center gap-2 text-gray-300 group-hover:text-white transition-colors">
+<span class="text-primary font-bold">$</span>
+<span class="truncate">docly infra --source aws.tf</span>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl border border-border-gray shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col">
+<div class="aspect-[4/3] bg-surface-gray p-8 flex items-center justify-center relative border-b border-border-gray/50 overflow-hidden">
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 w-full h-full bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col gap-2 font-mono text-[9px] text-gray-400">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="h-1 w-12 bg-gray-200 rounded"></div>
+<span class="text-xs text-black">Master</span>
+</div>
+<div class="ml-1 pl-3 border-l border-gray-200 flex flex-col gap-3 py-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+<div class="h-1 w-8 bg-gray-200 rounded"></div>
+<span>feat/login</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+<div class="h-1 w-10 bg-gray-200 rounded"></div>
+<span>fix/bug-12</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-lg font-bold text-text-main mb-2">Git History Graph</h3>
+<p class="text-sm text-text-muted mb-4">Branching strategy and commit history.</p>
+<div class="bg-gray-900 rounded-md p-3 font-mono text-xs flex items-center gap-2 text-gray-300 group-hover:text-white transition-colors">
+<span class="text-primary font-bold">$</span>
+<span class="truncate">docly git --depth 5</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 bg-surface-gray border border-border-gray rounded-2xl p-8 lg:p-12 text-center">
+<h2 class="text-2xl font-bold text-text-main mb-4">Ready to automate your docs?</h2>
+<p class="text-text-muted mb-8 max-w-xl mx-auto">Get started with Docly today and turn your codebase into clear, visual documentation in seconds.</p>
+<button class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-primary/20 transition-all duration-200">
+<span>View Documentation</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-border-gray py-12 bg-white mt-auto">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<p class="text-sm text-text-muted">© 2024 Docly Inc. All rights reserved.</p>
+<div class="flex gap-6 text-text-muted">
+<a class="hover:text-primary transition-colors" href="#"><span class="sr-only">Twitter</span>
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+<a class="hover:text-primary transition-colors" href="#"><span class="sr-only">GitHub</span>
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+
+</body></html>

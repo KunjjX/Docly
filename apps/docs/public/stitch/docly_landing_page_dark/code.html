@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Docly - AI-Powered Documentation Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0070F3",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#000000",
+                        "surface-light": "#F9FAFB",
+                        "surface-dark": "#111111",
+                        "border-light": "#E5E7EB",
+                        "border-dark": "#333333",
+                        "text-light": "#111827",
+                        "text-dark": "#EDEDED",
+                        "subtext-light": "#6B7280",
+                        "subtext-dark": "#888888",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        "xl": "1rem",
+                    },
+                    boxShadow: {
+                        "glow": "0 0 40px -10px rgba(0, 112, 243, 0.3)",
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-200 antialiased selection:bg-primary selection:text-white">
+<nav class="fixed w-full z-50 top-0 border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 font-bold text-xl tracking-tight" href="#">
+<span class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+</span>
+                        Docly
+                    </a>
+<div class="hidden md:flex items-center gap-6 text-sm font-medium text-subtext-light dark:text-subtext-dark">
+<a class="hover:text-primary transition-colors" href="#features">Features</a>
+<a class="hover:text-primary transition-colors" href="#customers">Customers</a>
+<a class="hover:text-primary transition-colors" href="#pricing">Pricing</a>
+<a class="hover:text-primary transition-colors" href="#blog">Blog</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-subtext-light dark:text-subtext-dark text-[18px]">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-md text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none text-subtext-light dark:text-subtext-dark w-64 placeholder-subtext-light/50 dark:placeholder-subtext-dark/50" placeholder="Search documentation..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+<kbd class="hidden sm:inline-block border border-border-light dark:border-border-dark rounded px-1.5 text-[10px] font-mono text-subtext-light dark:text-subtext-dark bg-background-light dark:bg-background-dark">⌘K</kbd>
+</div>
+</div>
+<a class="text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors" href="https://github.com" target="_blank">
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<button class="p-1 rounded-full text-subtext-light dark:text-subtext-dark hover:bg-surface-light dark:hover:bg-surface-dark transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
+</button>
+<a class="hidden sm:inline-flex items-center justify-center px-4 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors shadow-[0_0_15px_-3px_rgba(0,112,243,0.4)]" href="#">
+                        Sign Up
+                    </a>
+</div>
+</div>
+</div>
+</nav>
+<main class="relative pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32 overflow-hidden">
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark mb-8 animate-fade-in-up">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-medium text-subtext-light dark:text-subtext-dark">New: Version 2.0 is now available</span>
+<span class="material-symbols-outlined text-[14px] text-subtext-light dark:text-subtext-dark">arrow_forward</span>
+</div>
+<h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-text-light dark:text-white mb-6 max-w-4xl leading-[1.1]">
+                AI-Powered Documentation Generator for <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Developers</span>
+</h1>
+<p class="mt-4 max-w-2xl text-lg sm:text-xl text-subtext-light dark:text-subtext-dark mb-10">
+                Stop writing docs manually. Docly analyzes your codebase and generates beautiful, comprehensive documentation in seconds.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
+<a class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 md:text-lg transition-all shadow-[0_0_20px_-5px_rgba(0,112,243,0.5)] hover:shadow-[0_0_25px_-5px_rgba(0,112,243,0.6)]" href="#">
+                    Get Started
+                </a>
+<a class="inline-flex items-center justify-center px-8 py-3 border border-border-light dark:border-border-dark text-base font-medium rounded-md text-text-light dark:text-text-dark bg-white dark:bg-black hover:bg-surface-light dark:hover:bg-surface-dark md:text-lg transition-colors" href="#">
+                    View Documentation
+                </a>
+</div>
+<div class="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-border-light dark:border-border-dark bg-[#0a0a0a]">
+<div class="flex items-center px-4 py-3 bg-[#111] border-b border-border-dark">
+<div class="flex space-x-2">
+<div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<div class="flex-1 text-center text-xs text-subtext-dark font-mono opacity-60">bash — 80x24</div>
+</div>
+<div class="p-6 text-left font-mono text-sm sm:text-base bg-black/50 backdrop-blur-sm">
+<div class="flex items-center gap-2 text-white">
+<span class="text-primary">➜</span>
+<span class="text-blue-300">~</span>
+<span class="typing-effect">npm install -g docly-cli</span>
+</div>
+<div class="mt-2 text-subtext-dark">
+<span class="text-green-400">✔</span> Installed docly-cli v2.0.4 in 1.2s
+                    </div>
+<div class="mt-2 flex items-center gap-2 text-white">
+<span class="text-primary">➜</span>
+<span class="text-blue-300">~</span>
+<span>docly init</span>
+</div>
+<div class="mt-2 text-subtext-dark">
+                        Scanning project structure...<br/>
+                        Found 42 source files.<br/>
+                        Generating documentation site...
+                    </div>
+<div class="mt-2 text-green-400">
+                        Done! Documentation is live at http://localhost:3000
+                    </div>
+</div>
+<div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+</div>
+<p class="mt-8 text-sm text-subtext-light dark:text-subtext-dark">Trusted by engineering teams at</p>
+<div class="mt-4 flex flex-wrap justify-center gap-8 grayscale opacity-60 dark:invert">
+<img alt="Google" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8FPCVB2h8MKZT0w94QD5T_cQiJO7rfYhZNz7yA7J0XCOPAwBLS_-5dyo6hgVGns8T5zvDHlmFllzFK5Lr9IBEyuVJ-8U2U_sLdc4txlAZLuN8Zx05pMvCFbuf0TG6QL9hQbIs_3fKmJxqqhMj5oJ3i2IduVpzni_JMV2n2oRu_JGoENlHTC5MSoul6hD_7xgC1DN-D7S5UwvGFJXECZueScaPukxrQzd4-J7GV-bFMN-1HTN1X0XQ_CY_oeaumoAjXmCrmdBGGhJy"/>
+<img alt="IBM" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDZ9b6lMNGFoICwAoQTnh2KjKdy3BrDF_8cQ9BFz_C3scBPV0J4MImHTZzaWUMCLRVdV1vpPpkdCRsLSdgmtR6jWWdgqJmDAsxFZOap2dfYX5YfF_rzOb5hEtUMxF5lTCnI5aSTjlv1mG-dDV05jNGFIlKrd_1DwOcQno6e4MYzUFdQDZo290qRb9ryKxLwi9lqkvVKk_VrwNMcYcsWMryr5qtJnoo3aT8GjlcSkNq0J5_6whZ8X6heA9F_qzRl4-qtL_WFJDGlZNI"/>
+<img alt="Microsoft" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoG2gWDgi-gAWPysafWaOYr01mXjj7-Bt5KuQr-_FcITqft1hbewLtEze-bIViaF8p5NzgFhn_LcqrRnC_m38jZMmzGwxSt0vRr0F2_OGVJPVbJOV6cYGofhJqO6-oz8Tgf-Ub0QKy6Xt8IcsvkxDj_qpr7at1taaPw-wKMA-jnoXEHyZR56B-2Sn2W4S9DL3rOKdy5CawwatG4Dl8BnDDqH1bZ_pKBx9RcwOREOLjpeNoEbjiecgZS8GrbfrXuF_g9pnsBODem6Gq"/>
+<img alt="Netflix" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsCr6SWjyBp95u7XSkKFPJjZ--xdBBGx0dJ0MPH2hPD7kgAx_N7BCTJpOvxpGgGe5IBJ5jJfNgTFx1f4M05bUX_f2jX8HL6Sd_KG2ASFFUaXafCbm64ET7DS6I8R6PMNKNNTjQOc4TZBgx--knt0NHmlBfkVpFsDCMZTmjzQN3xXaPDXsL1Qa7HDUpanZcWFTXgAPCB00RJKtGLrQWQ3v-FfQIHXXm_lKSNlhWknUc2LK6YyXoxCZXycjX91R4ZJKMFWDKCGnNiSY"/>
+<img alt="Meta" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXk3WLgaTDVq8vH6zZ0RprfBa7RAsgc9i_E5XGgvRKGawqcojwOf6sjVVhujyUz4z_PXfzE52YIZug-x41AZiKLZjsWSpmwv-62ajSrJhoiYEf6cP96w_alrfmK966DgDyQmcZo5d7ymXqpn8XNqDv-wANPMUZ9eoWsUnaohmjtOvPlFMTVjUEKts1xOU7ktQEbJucMuREI2hpQyXIM2xIm2dPXFDE6aKOfTp7TgjNwNZuGm0N_4I7r-9ymr8BFkJ_uIqaHXi9-9lg"/>
+</div>
+</div>
+</main>
+<section class="py-24 bg-surface-light dark:bg-black border-t border-border-light dark:border-border-dark relative" id="features">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-4xl">Everything you need for perfect docs</h2>
+<p class="mt-4 text-lg text-subtext-light dark:text-subtext-dark">Built for speed and accuracy. Let AI handle the boring parts while you focus on writing code.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">smart_toy</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">AI Analysis</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Our LLM engine reads your code comments, types, and structure to generate human-readable explanations automatically.
+                    </p>
+</div>
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">bolt</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">Instant Updates</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Docs stay in sync with your PRs. Changes in code are instantly reflected in your documentation site.
+                    </p>
+</div>
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">language</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">Multi-Language</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Supports TypeScript, Python, Go, Rust, and 20+ other languages out of the box with zero configuration.
+                    </p>
+</div>
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">search</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">Semantic Search</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Built-in Algolia-powered search allows your users to find exactly what they need in milliseconds.
+                    </p>
+</div>
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">palette</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">Customizable Theme</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Match your brand perfectly. Use Tailwind CSS to style your documentation portal exactly how you want it.
+                    </p>
+</div>
+<div class="group p-8 rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">lock</span>
+</div>
+<h3 class="text-xl font-semibold text-text-light dark:text-text-dark mb-3">Private Docs</h3>
+<p class="text-subtext-light dark:text-subtext-dark leading-relaxed">
+                        Host internal documentation securely with SSO integration, IP allowlisting, and granular access controls.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-4xl mb-6">
+                        From comments to content in one click.
+                    </h2>
+<p class="text-lg text-subtext-light dark:text-subtext-dark mb-8">
+                        Just write standard JSDoc or comments in your code. Docly parses them, enriches them with AI context, and builds a static site. No markdown files to maintain separately.
+                    </p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="text-subtext-light dark:text-subtext-dark">Automatic type inference from TypeScript</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="text-subtext-light dark:text-subtext-dark">Generates interactive playground for API endpoints</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="text-subtext-light dark:text-subtext-dark">Validates examples against your codebase</span>
+</li>
+</ul>
+<a class="text-primary hover:text-blue-400 font-medium inline-flex items-center gap-1" href="#">
+                        Read the technical deep dive
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<div class="lg:w-1/2 w-full">
+<div class="relative rounded-xl border border-border-light dark:border-border-dark bg-[#0d1117] shadow-2xl overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-subtext-dark hover:text-white"><span class="material-symbols-outlined text-[18px]">content_copy</span></button>
+</div>
+<div class="flex border-b border-border-dark bg-[#161b22]">
+<div class="px-4 py-2 text-xs text-subtext-dark border-r border-border-dark bg-[#0d1117] text-white">example.ts</div>
+<div class="px-4 py-2 text-xs text-subtext-dark">output.mdx</div>
+</div>
+<div class="p-6 overflow-x-auto">
+<pre class="font-mono text-sm leading-6"><span class="text-[#ff7b72]"></span>
+<span class="text-[#ff7b72]">export</span> <span class="text-[#ff7b72]">async</span> <span class="text-[#ff7b72]">function</span> <span class="text-[#d2a8ff]">createUser</span>(
+  <span class="text-[#79c0ff]">email</span>: <span class="text-[#79c0ff]">string</span>
+): <span class="text-[#79c0ff]">Promise</span>&lt;<span class="text-[#79c0ff]">User</span>&gt; {
+  <span class="text-[#8b949e]">// Implementation...</span>
+  <span class="text-[#ff7b72]">return</span> db.<span class="text-[#d2a8ff]">insert</span>({ email });
+}</pre>
+</div>
+</div>
+<div class="flex justify-center -my-4 relative z-10">
+<div class="bg-primary rounded-full p-2 shadow-glow">
+<span class="material-symbols-outlined text-white text-[20px]">arrow_downward</span>
+</div>
+</div>
+<div class="relative rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-xl overflow-hidden mt-4 p-6">
+<div class="prose dark:prose-invert">
+<h3 class="text-lg font-bold">createUser</h3>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">Creates a new user in the database.</p>
+<div class="mt-4">
+<span class="text-xs font-mono bg-background-light dark:bg-black border border-border-light dark:border-border-dark px-2 py-1 rounded">POST /users</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 relative overflow-hidden">
+<div class="absolute inset-0 bg-surface-light dark:bg-surface-dark"></div>
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+<div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-4xl font-bold tracking-tight text-text-light dark:text-white mb-6">
+                Ready to upgrade your documentation?
+            </h2>
+<p class="text-xl text-subtext-light dark:text-subtext-dark mb-10 max-w-2xl mx-auto">
+                Join 10,000+ developers using Docly to maintain world-class documentation with zero overhead.
+            </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 md:text-lg transition-all shadow-glow" href="#">
+                    Start for Free
+                </a>
+<a class="inline-flex items-center justify-center px-8 py-3 border border-border-light dark:border-border-dark text-base font-medium rounded-md text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark hover:bg-surface-light dark:hover:bg-surface-dark md:text-lg transition-colors" href="#">
+                    Contact Sales
+                </a>
+</div>
+</div>
+</section>
+<footer class="bg-background-light dark:bg-background-dark border-t border-border-light dark:border-border-dark pt-16 pb-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+<div class="col-span-2">
+<a class="flex items-center gap-2 font-bold text-xl tracking-tight mb-4 text-text-light dark:text-white" href="#">
+<span class="w-6 h-6 bg-primary rounded-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+</span>
+                        Docly
+                    </a>
+<p class="text-sm text-subtext-light dark:text-subtext-dark max-w-xs mb-6">
+                        The intelligent documentation platform for modern engineering teams.
+                    </p>
+<div class="flex gap-4">
+<a class="text-subtext-light dark:text-subtext-dark hover:text-text-light dark:hover:text-white" href="#">
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="text-subtext-light dark:text-subtext-dark hover:text-text-light dark:hover:text-white" href="#">
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-text-light dark:text-white mb-4">Product</h4>
+<ul class="space-y-2 text-sm text-subtext-light dark:text-subtext-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Integrations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Changelog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Docs</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-text-light dark:text-white mb-4">Company</h4>
+<ul class="space-y-2 text-sm text-subtext-light dark:text-subtext-dark">
+<li><a class="hover:text-primary transition-colors" href="#">About</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Customers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-text-light dark:text-white mb-4">Legal</h4>
+<ul class="space-y-2 text-sm text-subtext-light dark:text-subtext-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-subtext-light dark:text-subtext-dark">© 2024 Docly Inc. All rights reserved.</p>
+<div class="flex items-center gap-2 text-sm text-subtext-light dark:text-subtext-dark">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    System Operational
+                </div>
+</div>
+</div>
+</footer>
+
+</body></html>
