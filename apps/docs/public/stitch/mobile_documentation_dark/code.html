@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Docly - Mobile Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006cf0",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1823",
+                        "surface-dark": "#16202e",
+                        "border-dark": "#2a3645",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for code blocks */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Mobile device frame simulation */
+        .device-frame {
+            box-shadow: 0 0 0 1px #333, 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-display flex items-center justify-center min-h-screen p-4 sm:p-8">
+<!-- Mobile Device Simulator Container -->
+<main class="device-frame relative w-full max-w-[400px] h-[850px] bg-background-light dark:bg-background-dark rounded-3xl overflow-hidden flex flex-col mx-auto border border-gray-800 shadow-2xl">
+<!-- Status Bar Simulation -->
+<div class="h-8 bg-background-light dark:bg-background-dark flex items-center justify-between px-6 select-none shrink-0 z-50">
+<span class="text-xs font-medium text-gray-500">9:41</span>
+<div class="flex gap-1.5">
+<div class="w-3 h-3 bg-gray-500 rounded-full opacity-20"></div>
+<div class="w-3 h-3 bg-gray-500 rounded-full opacity-20"></div>
+<span class="material-icons-outlined text-[14px] text-gray-500">wifi</span>
+<span class="material-icons-outlined text-[14px] text-gray-500">battery_full</span>
+</div>
+</div>
+<!-- Sticky Navigation -->
+<nav class="sticky top-0 z-40 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-border-dark">
+<div class="px-4 h-14 flex items-center justify-between">
+<button class="p-2 -ml-2 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-icons-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center text-white font-bold text-sm">D</div>
+<span class="font-semibold text-gray-900 dark:text-white tracking-tight">Docly</span>
+</div>
+<button class="p-2 -mr-2 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-icons-outlined">search</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Scroll Area -->
+<div class="flex-1 overflow-y-auto scrollbar-hide pb-20">
+<div class="px-5 pt-6">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400 mb-6 overflow-x-hidden whitespace-nowrap">
+<span class="hover:text-primary transition-colors cursor-pointer">Home</span>
+<span class="text-gray-600 dark:text-gray-600">/</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Docs</span>
+<span class="text-gray-600 dark:text-gray-600">/</span>
+<span class="text-primary truncate">Installation</span>
+</div>
+<!-- Header Section -->
+<header class="mb-8">
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">Installation</h1>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px]">
+                        Get started with Docly by installing the CLI globally via your preferred package manager.
+                    </p>
+</header>
+<!-- Content Body -->
+<div class="space-y-8">
+<!-- Section: NPM -->
+<section>
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                            Quick Start
+                        </h2>
+<div class="bg-surface-dark border border-border-dark rounded-lg overflow-hidden group">
+<div class="flex justify-between items-center px-4 py-2 border-b border-border-dark bg-[#111922]">
+<span class="text-xs text-gray-500 font-mono">Terminal</span>
+<button class="text-gray-500 hover:text-white transition-colors">
+<span class="material-icons-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<div class="overflow-x-auto scrollbar-hide">
+<pre class="p-4 text-sm font-mono text-gray-300 whitespace-pre"><code><span class="text-primary">npm</span> install -g @docly/cli</code></pre>
+</div>
+</div>
+<p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                            Alternatively, you can use Yarn or PNPM if you prefer.
+                        </p>
+</section>
+<!-- Section: Authentication -->
+<section>
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Authentication</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px] mb-4">
+                            Once installed, you'll need to authenticate your machine to access your team's documentation projects.
+                        </p>
+<div class="bg-surface-dark border border-border-dark rounded-lg overflow-hidden relative">
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-dark to-transparent pointer-events-none"></div>
+<div class="overflow-x-auto scrollbar-hide">
+<pre class="p-4 text-sm font-mono text-gray-300 whitespace-pre"><code><span class="text-primary">docly</span> login --email user@example.com</code></pre>
+</div>
+</div>
+<div class="mt-4 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+<div class="flex gap-3">
+<span class="material-icons-outlined text-primary text-sm mt-0.5">info</span>
+<div class="text-sm text-gray-300">
+<strong class="text-white block mb-1">SSO Users</strong>
+                                    If your organization uses SSO, please run <code class="text-xs bg-primary/20 px-1 py-0.5 rounded text-primary">docly login --sso</code> instead.
+                                </div>
+</div>
+</div>
+</section>
+<!-- Section: Verification -->
+<section>
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Verification</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px] mb-4">
+                            Verify your installation was successful by checking the version number.
+                        </p>
+<div class="bg-surface-dark border border-border-dark rounded-lg overflow-hidden">
+<div class="overflow-x-auto scrollbar-hide">
+<pre class="p-4 text-sm font-mono text-gray-300 whitespace-pre"><code><span class="text-primary">docly</span> --version
+<span class="text-gray-500"># Output: docly version 2.4.0</span></code></pre>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-12 pt-8 border-t border-gray-200 dark:border-border-dark grid grid-cols-2 gap-4 pb-8">
+<a class="group flex flex-col items-start p-4 rounded-lg border border-transparent hover:border-gray-200 dark:hover:border-border-dark hover:bg-gray-50 dark:hover:bg-surface-dark transition-all" href="#">
+<span class="text-xs text-gray-500 mb-1 group-hover:text-primary transition-colors">Previous</span>
+<span class="text-sm font-medium text-gray-900 dark:text-white">Introduction</span>
+</a>
+<a class="group flex flex-col items-end p-4 rounded-lg border border-transparent hover:border-gray-200 dark:hover:border-border-dark hover:bg-gray-50 dark:hover:bg-surface-dark transition-all text-right" href="#">
+<span class="text-xs text-gray-500 mb-1 group-hover:text-primary transition-colors">Next</span>
+<span class="text-sm font-medium text-gray-900 dark:text-white">Configuration</span>
+</a>
+</div>
+<!-- Bottom Branding -->
+<div class="text-center pb-8">
+<p class="text-xs text-gray-600 dark:text-gray-500">Powered by Docly AI</p>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (Optional for Mobile) -->
+<button class="absolute bottom-6 right-6 w-12 h-12 bg-primary rounded-full shadow-lg shadow-primary/30 flex items-center justify-center text-white hover:scale-105 transition-transform">
+<span class="material-icons-outlined text-xl">chat</span>
+</button>
+</main>
+</body></html>

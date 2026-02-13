@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Docly - Mobile Landing Light</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class", // We will use 'light' class on html effectively for this specific request
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#006cf0",
+              "background-light": "#ffffff", // Forced white for this specific Vercel-light request
+              "background-dark": "#0f1823",
+              "surface-light": "#f9fafb",
+              "surface-border": "#e5e7eb",
+              "text-main": "#111111",
+              "text-muted": "#666666",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Restricting width to simulate mobile view as requested */
+        body {
+            background-color: #f0f0f0; /* Outer background to show the mobile frame */
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .mobile-container {
+            width: 375px;
+            background-color: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mobile-container text-text-main">
+<!-- Header -->
+<header class="flex items-center justify-between px-5 py-6 sticky top-0 bg-white/80 backdrop-blur-md z-50 border-b border-surface-border/50">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+<span class="text-white font-bold text-xs">D</span>
+</div>
+<span class="font-display font-bold text-lg tracking-tight">Docly</span>
+</div>
+<button class="p-1 rounded-md hover:bg-surface-light text-text-main transition-colors">
+<span class="material-icons" style="font-size: 24px;">menu</span>
+</button>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="px-5 pt-10 pb-12 flex flex-col gap-6">
+<div class="space-y-4">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium w-fit">
+<span>v2.0 is now available</span>
+<span class="material-icons ml-1" style="font-size: 14px;">arrow_forward</span>
+</div>
+<h1 class="font-display font-bold text-4xl leading-[1.15] tracking-tight text-text-main">
+                        Documentation at the speed of code.
+                    </h1>
+<p class="font-display text-text-muted text-lg leading-relaxed">
+                        Generate beautiful, type-safe CLI documentation in seconds using AI. No config required.
+                    </p>
+</div>
+<div class="flex flex-col gap-3 mt-2">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3.5 px-6 rounded-lg transition-all shadow-sm shadow-primary/30 flex items-center justify-center gap-2">
+                        Start Generating
+                        <span class="material-icons" style="font-size: 18px;">bolt</span>
+</button>
+<button class="w-full bg-white border border-surface-border text-text-muted font-medium py-3.5 px-6 rounded-lg hover:bg-surface-light hover:text-text-main transition-all">
+                        Read the docs
+                    </button>
+</div>
+</section>
+<!-- Code Snippet / Terminal -->
+<section class="px-5 pb-16">
+<div class="bg-surface-light border border-surface-border rounded-xl p-4 font-mono text-sm shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-400 to-primary"></div>
+<div class="flex items-center gap-1.5 mb-4 opacity-40">
+<div class="w-2.5 h-2.5 rounded-full bg-text-main"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-text-main"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-text-main"></div>
+</div>
+<div class="space-y-2 text-text-muted">
+<div class="flex">
+<span class="text-primary mr-2">~</span>
+<span class="text-text-main">npx docly init</span>
+</div>
+<div class="text-blue-500 animate-pulse">
+                            &gt; Analyzing codebase...
+                        </div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity delay-75 duration-500">
+                            &gt; Found 12 CLI commands<br/>
+                            &gt; Generating markdown...<br/>
+<span class="text-green-600 font-semibold">&gt; Done in 1.2s ✨</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Stack -->
+<section class="px-5 pb-16 space-y-12">
+<div class="text-center space-y-2">
+<h2 class="font-display font-bold text-2xl tracking-tight">Why developers love Docly</h2>
+<p class="text-text-muted">Built for speed, designed for clarity.</p>
+</div>
+<div class="grid gap-4">
+<!-- Feature 1 -->
+<div class="p-6 rounded-xl border border-surface-border bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+<span class="material-icons">auto_fix_high</span>
+</div>
+<h3 class="font-display font-semibold text-lg mb-2 text-text-main">Zero Configuration</h3>
+<p class="text-text-muted leading-relaxed text-sm">
+                            Docly automatically detects your project structure, language, and framework. Just run and done.
+                        </p>
+</div>
+<!-- Feature 2 -->
+<div class="p-6 rounded-xl border border-surface-border bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+<span class="material-icons">psychology</span>
+</div>
+<h3 class="font-display font-semibold text-lg mb-2 text-text-main">Context Aware AI</h3>
+<p class="text-text-muted leading-relaxed text-sm">
+                            Our AI understands your variable names and logic to write human-readable descriptions that make sense.
+                        </p>
+</div>
+<!-- Feature 3 -->
+<div class="p-6 rounded-xl border border-surface-border bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+<span class="material-icons">sync_alt</span>
+</div>
+<h3 class="font-display font-semibold text-lg mb-2 text-text-main">Always in Sync</h3>
+<p class="text-text-muted leading-relaxed text-sm">
+                            Add a pre-commit hook to ensure your documentation never drifts from your actual codebase.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Testimonial/Social Proof -->
+<section class="px-5 pb-16">
+<div class="bg-surface-light rounded-xl p-6 border border-surface-border text-center">
+<div class="flex justify-center mb-4">
+<div class="flex -space-x-2">
+<img alt="Headshot of a happy developer user" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Headshot of a happy developer user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFFdGvoI2UBCp2wYACtllIoEGD1RjdtpUclyjkFLvbNhKyd4BGGZkkhxWkQg9zfhCIbx670LRFPya5MrCrPK2ZvtdXx01Mg5lGZ2bMj0ykGd2OEUY7loaN8M8uEZuatj89IxYKZ7ad6k8uIuP8VrOAeY0kA7a-v02yEOnZPgI0EiMjjYO1ukY_mSvEn6ZLZRyZM6UeLVxy-rRk8TNO42jqJQeaWiBpGo6-jGDrfgitiIAt7_7patd73Zbj_i4RCWnc4PjyYk6V3OOj"/>
+<img alt="Headshot of a smiling engineer" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Headshot of a smiling engineer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqA0JIpY5S3iYFOO5qitiQLi8XXHUoVsmbjcMgQltBYwg0Wejgi8PVS8SA4dRmcrxNxv73qaW2LrmvRMNjS_CLGpSlsui_Y8O1Qnp3_zXg80fHq_Vtxp_2ek7JOdu1EL9hlX6Zyfs_BDbK5IKVuPw73DWjOeIFAVwxxp8zw4XxYPAyQmn1YWObn1Gdd00qRNo3b8PHM422wNRnZ6ovHIfr8fzs-GoVtbA7WuWOa_TUpHs3x5o2YkocPP9bBoOUjYNGTd51Nk7_UwN7"/>
+<img alt="Headshot of a tech lead" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Headshot of a tech lead" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIqrnDcv5g8f1kOpgXTZ5mL2HGxPGabLRtY9zetAtQ_vExW-MonY4sf7wpb8G75pMfNNQhckvEiEKoh9d8OVQifkfmHId2C3glt5M4GwHjUqKJjVqs9v20sPPFmLTdT6tLRW4Z6giD0SKEdK_Du7wXI5vIsyiOQoMAgib3T4aZ24i5M1SewAkUBIN9EgvgXNbR7QfxN2Cp-Ygb_Hra3yy22h-ZzbVjGM1AKWcG3azUo0cOOBwZ6nu7W-vaZlDLoaSPMHj3ly6fXkB2"/>
+</div>
+</div>
+<p class="font-display font-medium text-text-main text-lg mb-2">"It saved our team weeks of writing manual docs."</p>
+<p class="text-text-muted text-sm">Trusted by 10,000+ developers</p>
+</div>
+</section>
+<!-- CTA Bottom -->
+<section class="px-5 pb-16">
+<div class="py-8 border-t border-surface-border">
+<h2 class="font-display font-bold text-2xl text-text-main mb-4">Ready to ship better docs?</h2>
+<button class="w-full bg-text-main hover:bg-black text-white font-medium py-3.5 px-6 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                        Get Started for Free
+                        <span class="material-icons text-primary" style="font-size: 18px;">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-text-muted mt-4">No credit card required.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-light border-t border-surface-border px-5 py-10">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 bg-text-main rounded-full flex items-center justify-center">
+<span class="text-white font-bold text-[10px]">D</span>
+</div>
+<span class="font-display font-bold text-md tracking-tight text-text-main">Docly</span>
+</div>
+<div class="grid grid-cols-2 gap-8 text-sm">
+<div class="flex flex-col gap-3">
+<span class="font-semibold text-text-main">Product</span>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Integrations</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Changelog</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-semibold text-text-main">Resources</span>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">API Reference</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">Blog</a>
+</div>
+</div>
+<div class="pt-8 border-t border-surface-border/50 flex flex-col gap-4">
+<div class="flex gap-4">
+<a class="text-text-muted hover:text-text-main" href="#"><span class="material-icons text-xl">code</span></a> <!-- Github icon placeholder -->
+<a class="text-text-muted hover:text-text-main" href="#"><span class="material-icons text-xl">alternate_email</span></a> <!-- Twitter icon placeholder -->
+</div>
+<p class="text-xs text-text-muted">© 2023 Docly Inc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Docly Changelog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0c6de4",
+                        "primary-dark": "#0a5bc4",
+                        "primary-light": "#eef6ff",
+                        "background-light": "#ffffff", /* Using pure white as per description */
+                        "background-alt": "#f5f7f8", /* For subtle backgrounds */
+                        "background-dark": "#101822",
+                        "neutral-900": "#111827",
+                        "neutral-800": "#1f2937",
+                        "neutral-600": "#4b5563",
+                        "neutral-500": "#6b7280",
+                        "neutral-400": "#9ca3af",
+                        "neutral-200": "#e5e7eb",
+                        "neutral-100": "#f3f4f6",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom timeline line */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: #e5e7eb;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral-800 antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-background-light/80 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">D</div>
+<span class="font-bold text-xl tracking-tight text-neutral-900 dark:text-white">Docly</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-neutral-600 hover:text-primary font-medium text-sm transition-colors" href="#">Documentation</a>
+<a class="text-neutral-600 hover:text-primary font-medium text-sm transition-colors" href="#">API Reference</a>
+<a class="text-neutral-900 font-medium text-sm" href="#">Changelog</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-sm font-medium text-neutral-600 hover:text-primary dark:text-neutral-300" href="#">Sign in</a>
+<a class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-primary hover:bg-primary-dark transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" href="#">
+                        Get Started
+                    </a>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="relative pt-32 pb-24 min-h-screen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+<!-- Header Section with Side Newsletter -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-start">
+<!-- Title Area -->
+<div class="lg:col-span-8">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wide uppercase mb-4">
+                        What's New
+                    </div>
+<h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight leading-tight">
+                        Changelog &amp; Updates
+                    </h1>
+<p class="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
+                        Stay up to date with the latest improvements, bug fixes, and feature releases for the Docly CLI. We ship updates every week.
+                    </p>
+</div>
+<!-- Newsletter Card (Top Right) -->
+<div class="lg:col-span-4 lg:mt-2">
+<div class="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-lg border border-neutral-100 dark:border-neutral-700 sticky top-24">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-icons text-primary bg-primary/10 p-2 rounded-full text-xl">notifications_active</span>
+<h3 class="font-bold text-neutral-900 dark:text-white">Subscribe to updates</h3>
+</div>
+<p class="text-sm text-neutral-500 mb-4 dark:text-neutral-400">
+                            Get notified about major releases and breaking changes directly to your inbox.
+                        </p>
+<form class="space-y-3">
+<input class="block w-full px-4 py-2.5 rounded-full border border-neutral-200 dark:border-neutral-600 text-neutral-900 bg-background-alt focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm" placeholder="name@company.com" type="email"/>
+<button class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors" type="button">
+                                Subscribe
+                            </button>
+</form>
+</div>
+</div>
+</div>
+<!-- Timeline Section -->
+<div class="relative timeline-line max-w-4xl mx-auto">
+<!-- Timeline Entry: v2.4.0 -->
+<div class="relative mb-16 group">
+<!-- Dot on timeline -->
+<div class="absolute left-1/2 -ml-[9px] w-[18px] h-[18px] bg-white border-4 border-primary rounded-full z-10 hidden md:block"></div>
+<div class="md:grid md:grid-cols-2 md:gap-16 items-start">
+<!-- Date Side (Left on Desktop) -->
+<div class="md:text-right mb-4 md:mb-0 md:pt-1">
+<span class="text-sm font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">October 24, 2023</span>
+</div>
+<!-- Content Side (Right on Desktop) -->
+<div class="md:pt-0 bg-white dark:bg-neutral-800 p-0 rounded-xl relative z-20">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-primary text-white shadow-sm">
+                                    v2.4.0
+                                </span>
+</div>
+<h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-4 group-hover:text-primary transition-colors">Enhanced AI Context Awareness</h2>
+<p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                                Our AI engine now understands multi-file context better than ever. We've introduced a new parsing algorithm that respects import trees more accurately.
+                            </p>
+<div class="space-y-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Added</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Added support for multi-file context analysis across directories.</li>
+<li>New <code class="bg-neutral-100 dark:bg-neutral-700 px-1 py-0.5 rounded text-xs font-mono text-primary">--deep-scan</code> flag for recursive documentation generation.</li>
+</ul>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Fixed</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Fixed a bug where CLI flags were ignored in generation on Windows.</li>
+<li>Resolved race condition in async file writing.</li>
+</ul>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Improved</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Improved response time for large repositories by 40%.</li>
+</ul>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-neutral-100 dark:border-neutral-700">
+<a class="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1 group/link" href="#">
+                                    View commit log 
+                                    <span class="material-icons text-base transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Entry: v2.3.1 -->
+<div class="relative mb-16 group">
+<div class="absolute left-1/2 -ml-[9px] w-[18px] h-[18px] bg-white border-4 border-neutral-300 rounded-full z-10 hidden md:block"></div>
+<div class="md:grid md:grid-cols-2 md:gap-16 items-start">
+<div class="md:text-right mb-4 md:mb-0 md:pt-1">
+<span class="text-sm font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">October 10, 2023</span>
+</div>
+<div class="md:pt-0 bg-white dark:bg-neutral-800 p-0 rounded-xl relative z-20">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-primary/10 text-primary border border-primary/20">
+                                    v2.3.1
+                                </span>
+</div>
+<h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-4 group-hover:text-primary transition-colors">Performance Patch</h2>
+<p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                                A quick follow-up to our major release to address reported memory leaks in long-running processes.
+                            </p>
+<div class="space-y-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Fixed</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Patched memory leak in Node.js v18+ environments.</li>
+<li>Corrected typo in default config template.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Entry: v2.3.0 -->
+<div class="relative mb-16 group">
+<div class="absolute left-1/2 -ml-[9px] w-[18px] h-[18px] bg-white border-4 border-neutral-300 rounded-full z-10 hidden md:block"></div>
+<div class="md:grid md:grid-cols-2 md:gap-16 items-start">
+<div class="md:text-right mb-4 md:mb-0 md:pt-1">
+<span class="text-sm font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">September 28, 2023</span>
+</div>
+<div class="md:pt-0 bg-white dark:bg-neutral-800 p-0 rounded-xl relative z-20">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-primary/10 text-primary border border-primary/20">
+                                    v2.3.0
+                                </span>
+</div>
+<div class="aspect-video w-full bg-neutral-100 rounded-lg mb-6 overflow-hidden relative group-hover:shadow-md transition-shadow">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center">
+<span class="material-icons text-primary/40 text-6xl">integration_instructions</span>
+</div>
+<img alt="" class="w-full h-full object-cover opacity-80 mix-blend-multiply" data-alt="Abstract visualization of markdown documentation code on a screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJUHo69vUCBTZO1_B8pkYzYrYFg2Fujen6Lnvi1C3FezLZvUlQp3QJ_DcvbaTX5Tuc93aCC4BzW79ZXs_xc6YUMuZpkpqpVmWE-HXpp5lnHIe3JTd3WP46GIbhPalrm2BvPWMC78ijwCwJV94HIHrL-bxIT8_Bkfd-PfxlUSNPHrRKLhNRXOP54erk7X0CzczLAub7rLZ1YBRe3x6YeXF4Ohqq2_Arrhg5PADtVk9ecM8BZ4rC73Lxfl0sTHGgzJ4dmAcoaCeWIGod"/>
+</div>
+<h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-4 group-hover:text-primary transition-colors">Markdown 2.0 &amp; Custom Templates</h2>
+<p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                                We've completely overhauled the markdown generation engine. You can now supply your own Handlebars templates to control exactly how Docly outputs documentation.
+                            </p>
+<div class="space-y-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Added</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Custom template support via <code class="bg-neutral-100 dark:bg-neutral-700 px-1 py-0.5 rounded text-xs font-mono text-primary">--template</code> flag.</li>
+<li>Added 15 new built-in themes for documentation sites.</li>
+<li>Support for Mermaid.js diagrams in output.</li>
+</ul>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Improved</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Markdown tables are now auto-formatted for readability.</li>
+</ul>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-neutral-100 dark:border-neutral-700">
+<a class="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1 group/link" href="#">
+                                    Read the blog post
+                                    <span class="material-icons text-base transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Entry: v2.2.0 -->
+<div class="relative mb-16 group">
+<div class="absolute left-1/2 -ml-[9px] w-[18px] h-[18px] bg-white border-4 border-neutral-300 rounded-full z-10 hidden md:block"></div>
+<div class="md:grid md:grid-cols-2 md:gap-16 items-start">
+<div class="md:text-right mb-4 md:mb-0 md:pt-1">
+<span class="text-sm font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">August 15, 2023</span>
+</div>
+<div class="md:pt-0 bg-white dark:bg-neutral-800 p-0 rounded-xl relative z-20">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-primary/10 text-primary border border-primary/20">
+                                    v2.2.0
+                                </span>
+</div>
+<h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-4 group-hover:text-primary transition-colors">CLI Interactive Mode</h2>
+<p class="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                                Don't like remembering flags? We added a new interactive wizard that guides you through the documentation generation process step-by-step.
+                            </p>
+<div class="space-y-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold text-neutral-900 dark:text-white">Added</span>
+</div>
+<ul class="list-disc list-inside text-neutral-600 dark:text-neutral-400 text-sm space-y-1 ml-1">
+<li>Interactive setup wizard (run `docly init`).</li>
+<li>Auto-detection of project type (JS, TS, Python, Go).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Timeline Indicator -->
+<div class="relative text-center pt-8">
+<div class="absolute left-1/2 -ml-[5px] -mt-[40px] w-[10px] h-[10px] bg-neutral-300 rounded-full z-10 hidden md:block"></div>
+<button class="inline-flex items-center px-6 py-3 border border-neutral-200 dark:border-neutral-700 shadow-sm text-sm font-medium rounded-full text-neutral-700 bg-white hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+                        Load older updates
+                     </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-neutral-100 dark:bg-background-dark dark:border-neutral-800 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 bg-neutral-200 rounded-md flex items-center justify-center text-neutral-600 text-xs font-bold">D</div>
+<span class="font-medium text-neutral-500 text-sm">© 2024 Docly Inc.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-neutral-400 hover:text-primary transition-colors" href="#">Twitter</a>
+<a class="text-neutral-400 hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="text-neutral-400 hover:text-primary transition-colors" href="#">Discord</a>
+</div>
+</div>
+</footer>
+</body></html>

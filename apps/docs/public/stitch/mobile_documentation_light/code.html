@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Docly Mobile Documentation - Light Mode Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006cf0",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1823",
+                        "docly-text": "#111111",
+                        "docly-gray": "#666666",
+                        "docly-border": "#e5e7eb",
+                        "docly-code": "#f1f1f1",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex items-center justify-center p-4 sm:p-8">
+<!-- Desktop Wrapper displaying the Mobile Simulation -->
+<main class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-center gap-12">
+<!-- Contextual Sidebar (Desktop View Only) -->
+<div class="hidden lg:flex flex-col max-w-xs space-y-6 pt-10 sticky top-10">
+<div>
+<h2 class="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Project</h2>
+<h1 class="text-3xl font-bold tracking-tight">Docly</h1>
+</div>
+<div>
+<p class="text-gray-400 leading-relaxed">
+                    AI-powered documentation generator. 
+                    Viewing <span class="text-white font-medium">Mobile Light Mode</span> variant.
+                </p>
+</div>
+<div class="space-y-3 pt-4">
+<div class="flex items-center gap-3 text-sm text-gray-400">
+<span class="material-icons text-lg">smartphone</span>
+<span>iPhone 14 Pro Max View</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-400">
+<span class="material-icons text-lg">light_mode</span>
+<span>Light Theme active</span>
+</div>
+</div>
+</div>
+<!-- The Mobile Device Simulation -->
+<!-- Note: The content inside this div forces LIGHT MODE styles to simulate the specific request -->
+<div class="relative mx-auto border-8 border-gray-800 dark:border-gray-900 rounded-[3rem] shadow-2xl overflow-hidden bg-white w-full max-w-[400px] h-[850px] shrink-0 ring-1 ring-white/10">
+<!-- Mobile Status Bar Simulation -->
+<div class="absolute top-0 left-0 right-0 h-12 bg-white z-50 flex justify-between items-center px-6 text-black select-none">
+<span class="text-xs font-semibold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-icons text-[14px]">signal_cellular_alt</span>
+<span class="material-icons text-[14px]">wifi</span>
+<span class="material-icons text-[14px] rotate-90">battery_full</span>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="h-full overflow-y-auto pt-12 pb-8 scrollbar-hide bg-white text-docly-text">
+<!-- Navbar -->
+<nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-docly-border px-5 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="text-docly-gray hover:text-primary transition-colors">
+<span class="material-icons">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-white font-bold text-xs">D</div>
+<span class="font-bold text-lg tracking-tight">Docly</span>
+</div>
+</div>
+<button class="text-docly-gray hover:text-primary transition-colors">
+<span class="material-icons">search</span>
+</button>
+</nav>
+<!-- Main Content -->
+<div class="px-5 py-8 space-y-8">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-xs text-docly-gray font-medium">
+<span>Docs</span>
+<span class="material-icons text-[10px]">chevron_right</span>
+<span>Getting Started</span>
+</div>
+<!-- Header Section -->
+<div class="space-y-4">
+<h1 class="text-3xl font-bold tracking-tight text-docly-text">Quick Start</h1>
+<p class="text-docly-gray text-lg leading-relaxed font-light">
+                            Get up and running with Docly in less than 5 minutes. Generate beautiful documentation directly from your CLI.
+                        </p>
+</div>
+<!-- Info Callout (Electric Blue) -->
+<div class="bg-primary/5 border border-primary/20 rounded-lg p-4 flex gap-3 items-start">
+<span class="material-icons text-primary text-xl mt-0.5">info</span>
+<div class="space-y-1">
+<p class="text-sm font-semibold text-primary">Prerequisite</p>
+<p class="text-sm text-docly-text/80 leading-relaxed">
+                                Docly requires Node.js 18.0 or later. Check your version with <code class="bg-white px-1 py-0.5 rounded border border-primary/10 text-xs font-mono text-primary">node -v</code>.
+                            </p>
+</div>
+</div>
+<!-- Step 1: Installation -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold text-docly-text flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-docly-gray/10 text-xs text-docly-gray">1</span>
+                            Installation
+                        </h2>
+<p class="text-docly-gray leading-relaxed">
+                            Install the Docly CLI globally using npm or yarn. This will allow you to run the generator from any project directory.
+                        </p>
+<!-- Code Block -->
+<div class="relative group">
+<div class="absolute right-3 top-3 opacity-100 transition-opacity">
+<button class="p-1.5 rounded hover:bg-white/50 text-docly-gray hover:text-primary transition-colors" title="Copy code">
+<span class="material-icons text-base">content_copy</span>
+</button>
+</div>
+<pre class="bg-docly-code border border-docly-border rounded-lg p-4 overflow-x-auto font-mono text-sm leading-relaxed text-docly-text"><code><span class="text-docly-gray"># Install via npm</span>
+npm install -g @docly/cli
+
+<span class="text-docly-gray"># Or via yarn</span>
+yarn global add @docly/cli</code></pre>
+</div>
+</section>
+<!-- Step 2: Initialization -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold text-docly-text flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-docly-gray/10 text-xs text-docly-gray">2</span>
+                            Initialize Project
+                        </h2>
+<p class="text-docly-gray leading-relaxed">
+                            Navigate to your project root and initialize Docly. This creates a <code class="bg-docly-code px-1.5 py-0.5 rounded text-sm font-mono text-primary">docly.config.json</code> file.
+                        </p>
+<!-- Code Block -->
+<div class="relative group">
+<div class="absolute right-3 top-3 opacity-100 transition-opacity">
+<button class="p-1.5 rounded hover:bg-white/50 text-docly-gray hover:text-primary transition-colors" title="Copy code">
+<span class="material-icons text-base">content_copy</span>
+</button>
+</div>
+<pre class="bg-docly-code border border-docly-border rounded-lg p-4 overflow-x-auto font-mono text-sm leading-relaxed text-docly-text"><code>cd my-project
+docly init</code></pre>
+</div>
+</section>
+<!-- What's Next Card -->
+<div class="mt-8 p-5 rounded-xl border border-docly-border bg-white shadow-sm">
+<h3 class="font-semibold mb-2">What's Next?</h3>
+<ul class="space-y-3">
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="text-docly-gray group-hover:text-primary transition-colors text-sm">Configuration Guide</span>
+<span class="material-icons text-docly-gray/50 group-hover:text-primary text-sm">arrow_forward</span>
+</a>
+</li>
+<li class="h-px bg-docly-border w-full"></li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="text-docly-gray group-hover:text-primary transition-colors text-sm">Deploying Docs</span>
+<span class="material-icons text-docly-gray/50 group-hover:text-primary text-sm">arrow_forward</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Bottom Nav -->
+<div class="pt-8 flex justify-between items-center gap-4">
+<a class="flex-1 p-4 rounded-lg border border-docly-border hover:border-primary/50 group transition-all text-left" href="#">
+<span class="block text-xs text-docly-gray mb-1">Previous</span>
+<span class="block font-medium text-primary group-hover:underline">Introduction</span>
+</a>
+<a class="flex-1 p-4 rounded-lg border border-docly-border hover:border-primary/50 group transition-all text-right" href="#">
+<span class="block text-xs text-docly-gray mb-1">Next</span>
+<span class="block font-medium text-primary group-hover:underline">Configuration</span>
+</a>
+</div>
+<!-- Footer -->
+<footer class="pt-12 pb-4 text-center">
+<div class="flex justify-center gap-6 mb-4">
+<a class="text-docly-gray hover:text-primary" href="#"><span class="text-sm">Twitter</span></a>
+<a class="text-docly-gray hover:text-primary" href="#"><span class="text-sm">GitHub</span></a>
+<a class="text-docly-gray hover:text-primary" href="#"><span class="text-sm">Discord</span></a>
+</div>
+<p class="text-xs text-docly-gray/60">
+                            © 2023 Docly Inc. All rights reserved.
+                        </p>
+</footer>
+</div>
+</div>
+<!-- Mobile Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-300 rounded-full z-50"></div>
+</div>
+</main>
+</body></html>

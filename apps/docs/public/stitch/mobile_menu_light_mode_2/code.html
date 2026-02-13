@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Diagrams Showcase Dark Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0070F3",
+                        "electric-blue-hover": "#0060df",
+                        "dark-border": "#222",
+                        "background-dark": "#000000",
+                        "text-secondary": "#888888",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                },
+            },
+        }
+    </script>
+<style>html { scroll-behavior: smooth; }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display min-h-screen flex flex-col">
+<nav class="border-b border-dark-border sticky top-0 z-50 bg-black/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-black font-bold text-lg">
+                    D
+                </div>
+<span class="text-xl font-bold tracking-tight">Docly</span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary">
+<a class="hover:text-white transition-colors" href="#">Features</a>
+<a class="hover:text-white transition-colors" href="#">Showcase</a>
+<a class="hover:text-white transition-colors" href="#">Pricing</a>
+<a class="text-white" href="#">Docs</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-icons text-xl">search</span>
+</button>
+<a class="bg-electric-blue hover:bg-electric-blue-hover text-white text-sm font-medium px-4 py-2 rounded-full transition-colors" href="#">
+                    Get Started
+                </a>
+</div>
+</div>
+</nav>
+<div class="flex-1 max-w-7xl mx-auto w-full px-6 py-12">
+<header class="mb-16 max-w-3xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 rounded text-xs font-medium bg-electric-blue/10 text-electric-blue border border-electric-blue/20">v2.4.0</span>
+<span class="text-text-secondary text-sm">Automated Documentation</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                14+ Automated Diagrams
+            </h1>
+<p class="text-lg text-text-secondary leading-relaxed max-w-2xl">
+                Visualizing your codebase shouldn't be a manual chore. Docly uses advanced static analysis and AI to generate accurate, always-up-to-date diagrams directly from your CLI.
+            </p>
+</header>
+<div class="flex flex-col lg:flex-row gap-12">
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="sticky top-24">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-6">Categories</h3>
+<div class="space-y-1">
+<button class="w-full text-left px-3 py-2 rounded-md bg-electric-blue/10 text-electric-blue font-medium flex items-center justify-between group transition-colors">
+<span>All Diagrams</span>
+<span class="text-xs bg-electric-blue text-white px-2 py-0.5 rounded-full">14</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-md text-text-secondary hover:text-white hover:bg-white/5 font-medium flex items-center justify-between group transition-colors">
+<span>Backend</span>
+<span class="text-xs text-gray-500 group-hover:text-white px-2 py-0.5 rounded-full">6</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-md text-text-secondary hover:text-white hover:bg-white/5 font-medium flex items-center justify-between group transition-colors">
+<span>Frontend</span>
+<span class="text-xs text-gray-500 group-hover:text-white px-2 py-0.5 rounded-full">3</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-md text-text-secondary hover:text-white hover:bg-white/5 font-medium flex items-center justify-between group transition-colors">
+<span>Database</span>
+<span class="text-xs text-gray-500 group-hover:text-white px-2 py-0.5 rounded-full">3</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-md text-text-secondary hover:text-white hover:bg-white/5 font-medium flex items-center justify-between group transition-colors">
+<span>Workflow</span>
+<span class="text-xs text-gray-500 group-hover:text-white px-2 py-0.5 rounded-full">2</span>
+</button>
+</div>
+<div class="mt-12 pt-8 border-t border-dark-border">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-4">Quick Links</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="text-text-secondary hover:text-electric-blue transition-colors flex items-center gap-2" href="#"><span class="material-icons text-base">terminal</span> CLI Reference</a></li>
+<li><a class="text-text-secondary hover:text-electric-blue transition-colors flex items-center gap-2" href="#"><span class="material-icons text-base">api</span> API Docs</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<main class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<rect height="20" rx="2" width="30" x="10" y="10"></rect>
+<rect height="20" rx="2" width="30" x="60" y="10"></rect>
+<rect height="20" rx="2" width="30" x="35" y="50"></rect>
+<path d="M25 30 L25 40 L35 60"></path>
+<path d="M75 30 L75 40 L65 60"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">ER Diagram</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-er</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<line stroke-dasharray="4 4" x1="20" x2="20" y1="10" y2="70"></line>
+<line stroke-dasharray="4 4" x1="50" x2="50" y1="10" y2="70"></line>
+<line stroke-dasharray="4 4" x1="80" x2="80" y1="10" y2="70"></line>
+<rect height="10" width="20" x="10" y="5"></rect>
+<rect height="10" width="20" x="40" y="5"></rect>
+<rect height="10" width="20" x="70" y="5"></rect>
+<path d="M20 30 L80 30" marker-end="url(#arrow)"></path>
+<path d="M80 50 L20 50" marker-end="url(#arrow)"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Sequence Diagram</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-seq</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<circle cx="50" cy="40" r="15"></circle>
+<circle cx="30" cy="60" r="10"></circle>
+<circle cx="70" cy="60" r="10"></circle>
+<circle cx="50" cy="15" r="8"></circle>
+<line x1="50" x2="50" y1="23" y2="25"></line>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Class Hierarchy</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-class</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<rect height="40" rx="2" width="20" x="10" y="20"></rect>
+<rect height="40" rx="2" width="20" x="40" y="20"></rect>
+<rect height="40" rx="2" width="20" x="70" y="20"></rect>
+<path d="M20 20 L20 10 L50 10 L50 20"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Architecture</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-arch</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<rect height="15" rx="7.5" width="30" x="35" y="10"></rect>
+<rect height="40" width="30" x="35" y="30"></rect>
+<line x1="35" x2="65" y1="35" y2="35"></line>
+<line x1="35" x2="65" y1="45" y2="45"></line>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Database Schema</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-db</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<path d="M10 40 L30 40" marker-end="url(#arrow)"></path>
+<rect height="30" rx="2" width="40" x="30" y="25"></rect>
+<path d="M70 40 L90 40" marker-end="url(#arrow)"></path>
+<path d="M50 25 L50 10 L20 10 L20 30" stroke-dasharray="2 2"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">State Machine</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-state</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<polygon points="50,10 90,30 90,70 50,90 10,70 10,30" transform="scale(0.8) translate(12, 5)"></polygon>
+<circle cx="50" cy="40" r="5"></circle>
+<line x1="50" x2="80" y1="40" y2="60"></line>
+<line x1="50" x2="20" y1="40" y2="60"></line>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Component Graph</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-comp</code>
+</div>
+</div>
+<div class="group">
+<div class="aspect-[4/3] bg-[#0A0A0A] border border-dark-border rounded-lg overflow-hidden relative mb-3 group-hover:border-gray-600 transition-colors">
+<div class="absolute inset-0 p-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+<svg class="w-full h-full text-gray-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 80">
+<rect height="20" width="20" x="15" y="15"></rect>
+<rect height="20" width="20" x="65" y="15"></rect>
+<rect height="20" width="20" x="40" y="55"></rect>
+<path d="M25 35 L40 55"></path>
+<path d="M75 35 L60 55"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-base font-medium text-white mb-1">Git Flow</h3>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-electric-blue">docly diagram-git</code>
+</div>
+</div>
+</div>
+<div class="mt-16 flex justify-center">
+<button class="px-6 py-3 border border-dark-border rounded-lg text-sm font-medium hover:border-white hover:text-white transition-all text-text-secondary">
+                        Load more diagrams
+                    </button>
+</div>
+</main>
+</div>
+</div>
+<footer class="border-t border-dark-border mt-auto bg-black">
+<div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-text-secondary text-sm">
+                © 2023 Docly Inc. All rights reserved.
+            </div>
+<div class="flex items-center gap-6">
+<a class="text-text-secondary hover:text-white transition-colors" href="#">Twitter</a>
+<a class="text-text-secondary hover:text-white transition-colors" href="#">GitHub</a>
+<a class="text-text-secondary hover:text-white transition-colors" href="#">Discord</a>
+</div>
+</div>
+</footer>
+
+</body></html>
