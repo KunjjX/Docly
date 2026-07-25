@@ -1,8 +1,0 @@
-{
-    "aiProvider": "gemini",
-    "outputDir": "./documentation",
-    "overwriteExisting": false,
-    "includeExamples": true,
-    "diagramFormat": "mermaid",
-    "logLevel": "info"
-}

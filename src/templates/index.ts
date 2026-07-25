@@ -1,31 +1,36 @@
-/**
- * Build README prompt for AI generation
- */
-/**
- * Build README prompt for AI generation
- */
-export function buildReadmePrompt(projectData) {
-   return `Generate a comprehensive and professional README.md file for the following project:
+import type { CLIOptions, ProjectData, TechStack } from '../types';
+
+const SYSTEM_PREFIX =
+  'You are a senior software architect and technical writer. Generate clear, professional documentation in Markdown format. Be specific to the project context and avoid generic filler content.';
+
+function formatTechStack(techStack: TechStack): string {
+  const entries = Object.entries(techStack)
+    .filter(([, v]) => v && v !== 'None')
+    .map(([k, v]) => `- ${k}: ${v}`);
+  return entries.join('\n');
+}
+
+export function buildReadmePrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a comprehensive and professional README.md file for the following project:
 
 **Project Details:**
 - Name: ${projectData.name}
 - Description: ${projectData.description}
 - Version: ${projectData.version}
 - Language: ${projectData.techStack.language}
-- Tech Stack: ${[
-         projectData.techStack.frontend,
-         projectData.techStack.backend,
-         projectData.techStack.database,
-         projectData.techStack.authentication,
-      ]
-         .filter(t => t && t !== 'None')
-         .join(', ')}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 
 **Project Structure:**
 ${projectData.structure.map(dir => `- ${dir}/`).join('\n')}
 
 **Key Dependencies:**
-${projectData.dependencies.slice(0, 20).map(dep => `- ${dep}`).join('\n')}
+${projectData.dependencies
+  .slice(0, 20)
+  .map(dep => `- ${dep}`)
+  .join('\n')}
 
 **Entry Points:**
 ${projectData.entryPoints.map(e => `- ${e}`).join('\n')}
@@ -49,38 +54,39 @@ Generate a standard, high-quality README.md that includes:
 Format in clean Markdown. Be specific to the project's actual stack and purpose.`;
 }
 
-/**
- * Build SRS prompt for AI generation
- */
-export function buildSRSPrompt(projectData) {
-   return `Generate a Software Requirements Specification (SRS) document for the project: "${projectData.name}".
+export function buildSRSPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a Software Requirements Specification (SRS) document for the project: "${projectData.name}".
 
 **Project Information:**
 - Description: ${projectData.description}
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Main Components: ${projectData.structure.join(', ')}
 
 ---
 
 **Instructions:**
 Create a detailed SRS document including:
-1. **Introduction** - Purpose and scope of the project.
-2. **Overall Description** - Product perspective, functions, user classes, and operating environment.
-3. **Functional Requirements** - List specific functionalities based on the project type and dependencies.
-4. **Non-Functional Requirements** - Performance, security, and usability requirements.
+1. **Introduction** - Purpose, scope, definitions, and references.
+2. **Overall Description** - Product perspective, functions, user classes, operating environment, assumptions.
+3. **Functional Requirements** - List specific functionalities based on the project type and dependencies. Use a table with ID, Description, Priority.
+4. **Non-Functional Requirements** - Performance, security, usability, reliability requirements.
 5. **System Constraints** - Technical or environmental limitations.
+6. **Appendix** - Glossary of terms, references.
 
-The document should be professional and tailored to the project's specific nature (e.g., if it's a CLI tool, focus on CLI requirements; if it's a web app, focus on UI/UX and API requirements).`;
+The document should follow IEEE 830 standards and be tailored to the project's specific nature.`;
 }
 
-/**
- * Build Workflow prompt for AI generation
- */
-export function buildWorkflowPrompt(projectData) {
-   return `Generate workflow documentation and Mermaid diagrams for the project: "${projectData.name}".
+export function buildWorkflowPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate workflow documentation and Mermaid diagrams for the project: "${projectData.name}".
 
 **Project Information:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Structure: ${projectData.structure.join(', ')}
 - Entry Points: ${projectData.entryPoints.join(', ')}
 
@@ -96,14 +102,14 @@ Document the logical flows within the system:
 Analyze the project structure and dependencies to infer the most likely workflows.`;
 }
 
-/**
- * Build Test Cases documentation prompt
- */
-export function buildTestCasesPrompt(projectData) {
-   return `Generate a comprehensive test case document for the project: "${projectData.name}".
+export function buildTestCasesPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a comprehensive test case document for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Scripts: ${projectData.scripts.join(', ')}
 - Dependencies: ${projectData.dependencies.slice(0, 15).join(', ')}
 
@@ -119,14 +125,14 @@ Define a testing strategy and specific test cases:
 Focus on the most critical parts of the project based on its structure and dependencies.`;
 }
 
-/**
- * Build Architecture Documentation prompt
- */
-export function buildArchitecturePrompt(projectData) {
-   return `Generate architecture documentation for the project: "${projectData.name}".
+export function buildArchitecturePrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate architecture documentation for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Structure: ${projectData.structure.join(', ')}
 - Entry Points: ${projectData.entryPoints.join(', ')}
 - Language: ${projectData.techStack.language}
@@ -144,14 +150,14 @@ Create a professional architecture document:
 Ensure the architecture description matches the actual file structure provided.`;
 }
 
-/**
- * Build API Documentation prompt
- */
-export function buildApiDocsPrompt(projectData) {
-   return `Generate comprehensive API documentation for the project: "${projectData.name}".
+export function buildApiDocsPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate comprehensive API documentation for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Structure: ${projectData.structure.join(', ')}
 - Entry Points: ${projectData.entryPoints.join(', ')}
 
@@ -169,14 +175,14 @@ Create professional API documentation including:
 Analyze the project structure to infer API endpoints (look for routes/, controllers/, api/ folders).`;
 }
 
-/**
- * Build Setup Guide prompt
- */
-export function buildSetupPrompt(projectData) {
-   return `Generate a comprehensive setup guide for the project: "${projectData.name}".
+export function buildSetupPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a comprehensive setup guide for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Dependencies: ${projectData.dependencies.slice(0, 20).join(', ')}
 - Scripts: ${projectData.scripts.join(', ')}
 
@@ -194,14 +200,14 @@ Create a detailed setup guide including:
 Make the guide beginner-friendly with clear command examples.`;
 }
 
-/**
- * Build Deployment Guide prompt
- */
-export function buildDeployPrompt(projectData) {
-   return `Generate a deployment guide for the project: "${projectData.name}".
+export function buildDeployPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a deployment guide for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Scripts: ${projectData.scripts.join(', ')}
 - Language: ${projectData.techStack.language}
 
@@ -219,14 +225,14 @@ Create a professional deployment guide including:
 Tailor the guide to the specific tech stack used.`;
 }
 
-/**
- * Build Security Documentation prompt
- */
-export function buildSecurityPrompt(projectData) {
-   return `Generate security documentation for the project: "${projectData.name}".
+export function buildSecurityPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate security documentation for the project: "${projectData.name}".
 
 **Project Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Dependencies: ${projectData.dependencies.slice(0, 15).join(', ')}
 
 ---
@@ -243,15 +249,15 @@ Create comprehensive security documentation including:
 Analyze dependencies to identify security-related packages and infer security practices.`;
 }
 
-/**
- * Build Requirements Matrix prompt
- */
-export function buildRequirementsPrompt(projectData) {
-   return `Generate a requirements matrix for the project: "${projectData.name}".
+export function buildRequirementsPrompt(projectData: ProjectData): string {
+  return `${SYSTEM_PREFIX}
+
+Generate a requirements matrix for the project: "${projectData.name}".
 
 **Project Context:**
 - Description: ${projectData.description}
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Structure: ${projectData.structure.join(', ')}
 
 ---
@@ -267,7 +273,6 @@ Create a detailed requirements matrix including:
 Use tables for clear visualization. Prioritize requirements as High/Medium/Low.`;
 }
 
-// Shared styles for consistent, professional diagram aesthetics
 const SHARED_MERMAID_STYLES = `
     %% Global Styling
     classDef default fill:#ffffff,stroke:#333333,stroke-width:1px;
@@ -277,66 +282,78 @@ const SHARED_MERMAID_STYLES = `
     classDef external fill:#ffebee,stroke:#f44336,stroke-width:1px,rx:5,ry:5;
 `;
 
-/**
- * Build Diagram generation prompt
- * @param {Object} projectData
- * @param {string} diagramType
- */
-export function buildDiagramPrompt(projectData, diagramType = 'architecture') {
-   const isFlowchartLike = ['architecture', 'workflow', 'dfd', 'component', 'deployment', 'dfd-level-1', 'dfd-level-2', 'dfd-level-3', 'usecase'].includes(diagramType);
-   const isStateLike = ['activity', 'state'].includes(diagramType);
-   const isSequence = diagramType === 'sequence';
-   const isClass = diagramType === 'class';
-   const isER = ['er', 'erd'].includes(diagramType);
+export function buildDiagramPrompt(projectData: ProjectData, _options?: CLIOptions): string;
+export function buildDiagramPrompt(projectData: ProjectData, diagramType?: string): string;
+export function buildDiagramPrompt(
+  projectData: ProjectData,
+  diagramTypeOrOptions?: string | CLIOptions
+): string {
+  const isOptions = typeof diagramTypeOrOptions !== 'string';
+  const diagramType = isOptions
+    ? diagramTypeOrOptions?.diagramType || 'architecture'
+    : diagramTypeOrOptions || 'architecture';
 
-   let rules = '';
-   let stylingInstructions = '';
-   let initDirective = '';
+  const previousError = isOptions
+    ? (diagramTypeOrOptions as CLIOptions & { previousError?: string })?.previousError
+    : undefined;
 
-   // Define specific rules per type
-   if (isFlowchartLike) {
-      if (diagramType === 'component') {
-         rules = `
+  const isFlowchartLike = [
+    'architecture',
+    'workflow',
+    'dfd',
+    'component',
+    'deployment',
+    'dfd-level-1',
+    'dfd-level-2',
+    'dfd-level-3',
+    'usecase',
+  ].includes(diagramType);
+  const isStateLike = ['activity', 'state'].includes(diagramType);
+  const isSequence = diagramType === 'sequence';
+  const isClass = diagramType === 'class';
+  const isER = ['er', 'erd'].includes(diagramType);
+
+  let rules = '';
+  let stylingInstructions = '';
+  let initDirective = '';
+
+  if (isFlowchartLike) {
+    if (diagramType === 'component') {
+      rules = `
 1. Syntax: \`flowchart TD\`.
 2. Nodes:
    - Use \`subgraph "Name"\` for grouping (Do NOT use \`package\`).
    - Use \`[Component]\` syntax for nodes (e.g. \`id["Component Name"]\`).
    - IDs must be alphanumeric.
 3. Edges: \`CompA -->|Label| CompB\`.
-4. Style: Create a clean, modular layout.
-         `;
-      } else if (diagramType === 'deployment') {
-         rules = `
+4. Style: Create a clean, modular layout.`;
+    } else if (diagramType === 'deployment') {
+      rules = `
 1. Syntax: \`flowchart TD\`.
 2. Nodes:
    - Use \`subgraph "Node Name"\` for environments.
-   - **CRITICAL**: Do NOT append \`:::style\` to subgraph definitions. Use \`class SubgraphID container\` at the end if needed.
    - IDs must be STRICTLY alphanumeric (e.g. \`Server1\`).
    - Edges: \`Server1 -- "Protocol" --> Server2\`.
-3. Layout: Ensure clear separation of environments.
-         `;
-      } else if (diagramType === 'usecase') {
-         rules = `
+3. Layout: Ensure clear separation of environments.`;
+    } else if (diagramType === 'usecase') {
+      rules = `
 1. Syntax: \`flowchart TD\`.
 2. **STRICTLY** DO NOT use \`usecaseDiagram\`. Use \`flowchart TD\`.
 3. Actors: Use \`id([Actor Name])\` shape.
 4. Cases: Use \`id((Use Case Name))\` shape.
 5. Relationships: \`Actor --> Case\`.
 6. Grouping: Use \`subgraph SystemID ["System Name"]\` (Valid Alphanumeric ID).
-7. Comments: Use \`%%\`. **CRITICAL**: Place comments on their OWN LINE. Do NOT use inline comments.
-8. LABELS: **ALWAYS** quote labels inside shapes. Example: \`id["Label text"]\`, \`id(["Actor"])\`, \`id(("Case"))\`.
-         `;
-      } else {
-         // Default Flowchart/Architecture/DFD rules
-         rules = `
+7. Comments: Use \`%%\`. Place comments on their OWN LINE.
+8. LABELS: Always quote labels inside shapes.`;
+    } else {
+      rules = `
 1. Syntax: \`flowchart TD\`.
 2. Nodes: Simple alphanumeric IDs quoted if needed (e.g. \`id["Label"]\`).
 3. Edges: \`A -->|Label| B\`.
-4. Grouping: Use \`subgraph GroupID ["Title"]\` (Valid Alphanumeric ID required).
-         `;
-      }
+4. Grouping: Use \`subgraph GroupID ["Title"]\` (Valid Alphanumeric ID required).`;
+    }
 
-      stylingInstructions = `
+    stylingInstructions = `
 4. MANDATORY STYLING:
    - Copy this EXACTLY inside the flowchart:
    ${SHARED_MERMAID_STYLES}
@@ -346,77 +363,61 @@ export function buildDiagramPrompt(projectData, diagramType = 'architecture') {
      - \`service\` for Logic/Compute/Actors/Components.
      - \`storage\` for Database/Files/Artifacts.
      - \`external\` for Third-party/End Users.
-     - \`container\` for Subgraphs/Packages.
-      `;
-
-   } else if (isStateLike) {
-      rules = `
+     - \`container\` for Subgraphs/Packages.`;
+  } else if (isStateLike) {
+    rules = `
 1. Syntax: \`stateDiagram-v2\`.
 2. States: Use readable descriptions or IDs.
-3. Transitions: \`State1 --> State2 : Description\`.
-      `;
-      stylingInstructions = `
+3. Transitions: \`State1 --> State2 : Description\`.`;
+    stylingInstructions = `
 4. STYLING:
-   - You MAY use \`classDef\` if supported, but prioritize valid syntax.
-   - Example: \`classDef state_style fill:#f9f,stroke:#333;\`
-      `;
-
-   } else if (isSequence) {
-      rules = `
+   - You MAY use \`classDef\` if supported, but prioritize valid syntax.`;
+  } else if (isSequence) {
+    rules = `
 1. Syntax: \`sequenceDiagram\`.
 2. Participants: \`participant A as "Actor"\`.
-3. Messages: \`A->>B: Message\`.
-      `;
-      stylingInstructions = `
-4. STYLING: Do NOT use \`classDef\`. Use standard sequence diagram syntax only.
-      `;
-
-   } else if (isClass) {
-      rules = `
+3. Messages: \`A->>B: Message\`.`;
+    stylingInstructions = `
+4. STYLING: Do NOT use \`classDef\`. Use standard sequence diagram syntax only.`;
+  } else if (isClass) {
+    rules = `
 1. Syntax: \`classDiagram\`.
 2. Classes: \`class ClassName { +Method() }\`.
-3. Relations: \`ClassA --|> ClassB\`.
-      `;
-      stylingInstructions = `
-4. STYLING: Do NOT use \`classDef\` or \`:::\` syntax.
-      `;
+3. Relations: \`ClassA --|> ClassB\`.`;
+    stylingInstructions = `
+4. STYLING: Do NOT use \`classDef\` or \`:::\` syntax.`;
+  } else if (isER) {
+    initDirective = `%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#000000', 'textColor': '#000000', 'attributeBackgroundOdd': '#f0f0f0', 'attributeBackgroundEven': '#e0e0e0' }}}%%`;
 
-   } else if (isER) {
-      // Professional Blue Theme init directive
-      // primaryColor: Header Background (#2b547e - Deep Blue)
-      // primaryTextColor: Header Text (#ffffff - White)
-      // attributeBackgroundOdd: Alternating row color (#f9f9f9)
-      // attributeBackgroundEven: Alternating row color (#ffffff)
-      // textColor: Text color (#333333)
-      initDirective = `%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'lineColor': '#000000', 'textColor': '#000000', 'attributeBackgroundOdd': '#f0f0f0', 'attributeBackgroundEven': '#e0e0e0' }}}%%`;
-
-      rules = `
+    rules = `
 1. Syntax: \`erDiagram\`.
 2. Entities: \`ENTITY { type name }\` (e.g., \`USER { int id string name }\`).
 3. Relations: \`ENTITY ||--o{ OTHER : label\`.
 4. **CONTENT**: You MUST list significant attributes with types.
-   - **CRITICAL**: Mark Primary Keys with \`PK\` and Foreign Keys with \`FK\`.
-   - Example: \`int id PK\`, \`string email\`, \`int user_id FK\`.
-5. Layout: Ensure related entities are grouped.
-      `;
-      stylingInstructions = `
+   - Mark Primary Keys with \`PK\` and Foreign Keys with \`FK\`.
+5. Layout: Ensure related entities are grouped.`;
+    stylingInstructions = `
 4. STYLING:
    - Do NOT use \`classDef\`.
-   - The theme is handled by the init directive (Already Included).
-   - Ensure clean Entity definitions.
-      `;
+   - The theme is handled by the init directive (Already Included).`;
+  } else {
+    rules = `1. Syntax: \`flowchart TD\`.`;
+  }
 
-   } else {
-      rules = `1. Syntax: \`flowchart TD\`.`;
-   }
+  const errorFeedback = previousError
+    ? `\n**PREVIOUS ATTEMPT ERROR:**\nYour previous output had this error: "${previousError}".\nPlease fix this issue in your new response.\n`
+    : '';
 
-   return `Generate a Mermaid.js diagram code for the project: "${projectData.name}".
+  return `${SYSTEM_PREFIX}
+
+Generate a Mermaid.js diagram code for the project: "${projectData.name}".
 
 **Diagram Type:** ${diagramType.toUpperCase()}
 **Context:**
-- Tech Stack: ${JSON.stringify(projectData.techStack)}
+- Tech Stack:
+${formatTechStack(projectData.techStack)}
 - Structure: ${projectData.structure.join(', ')}
-
+${errorFeedback}
 **CRITICAL OUTPUT RULES:**
 1. **Raw Code Only**: Return ONLY the Mermaid code. No markdown blocks, no \`\`\` wrappers.
 2. **Valid Syntax**: Ensure strictly valid syntax for **${diagramType}**.
@@ -432,4 +433,3 @@ ${stylingInstructions}
 }
 
 export const DIAGRAM_STYLES = SHARED_MERMAID_STYLES;
-

@@ -10,7 +10,6 @@ build/
 *.tgz
 
 docs-olds/
-.github/
 
 # Environment files
 .env
@@ -44,5 +43,6 @@ temp/
 
 # Generated documentation (for test-project only)
 test-project/docs/
+docs/
 *.pdf
 *.docx

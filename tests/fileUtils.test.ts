@@ -1,7 +1,6 @@
-import { writeDoc, readFile, fileExists } from '../src/utils/fileUtils.js';
-import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
 import fs from 'fs-extra';
-import path from 'path';
+import { afterEach, beforeEach, describe, expect, test } from 'vitest';
+import { fileExists, readFile, writeDoc } from '../src/utils/fileUtils.js';
 
 const testOutputDir = './tests/output';
 
