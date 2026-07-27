@@ -136,11 +136,11 @@
         "ora": "^7.0.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "^2.5.4",
+        "@biomejs/biome": "^2.5.5",
         "@types/fs-extra": "^11.0.4",
         "@vitest/coverage-v8": "^4.1.10",
         "esbuild": "^0.28.1",
-        "nodemon": "^3.0.2",
+        "nodemon": "^3.1.14",
         "tsup": "^8.5.1",
         "typescript": "^7.0.2",
         "vitest": "^4.1.10"
